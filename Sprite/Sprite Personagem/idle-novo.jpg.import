@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rhxxfpbhkdx"
-path="res://.godot/imported/Sprite de Personagem Andando em Pixel Art.png-804f7a9e6549652167f7722834ceb4f5.ctex"
+uid="uid://do0m42t4oliqi"
+path="res://.godot/imported/idle-novo.jpg-57469577fff696fcf3af9f19ad81ee4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Sprite Personagem/Sprite de Personagem Andando em Pixel Art.png"
-dest_files=["res://.godot/imported/Sprite de Personagem Andando em Pixel Art.png-804f7a9e6549652167f7722834ceb4f5.ctex"]
+source_file="res://Sprite/Sprite Personagem/idle-novo.jpg"
+dest_files=["res://.godot/imported/idle-novo.jpg-57469577fff696fcf3af9f19ad81ee4c.ctex"]
 
 [params]
 
