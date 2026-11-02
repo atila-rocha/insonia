@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://nl0wnxwvo16e"]
+
+[ext_resource type="Script" uid="uid://coqrcdcnyp8sf" path="res://Scripts/inimigo_1.gd" id="1_61mfy"]
+[ext_resource type="Texture2D" uid="uid://tb0srherbqay" path="res://icon.svg" id="2_5no14"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssj8h"]
+atlas = ExtResource("2_5no14")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlew8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssj8h")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inimigo_corpo"]
+size = Vector2(110, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inimigo_dano"]
+size = Vector2(120, 120)
+
+[node name="inimigo_1" type="StaticBody2D" unique_id=704822685]
+script = ExtResource("1_61mfy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_inimigo_corpo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1699243863]
+sprite_frames = SubResource("SpriteFrames_vlew8")
+animation = &"default"
+
+[node name="AreaDano" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDano"]
+shape = SubResource("RectangleShape2D_inimigo_dano")

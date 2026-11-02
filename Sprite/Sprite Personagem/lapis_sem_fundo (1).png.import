@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cue4hs6u48d6"
-path="res://.godot/imported/jump_spritesheet_transparent.png-e2b3b453321833db347aa7182b216fab.ctex"
+uid="uid://bru5wujfgds0h"
+path="res://.godot/imported/lapis_sem_fundo (1).png-5fdd032b094bcbea9cb4f0d93fced2b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Sprite Personagem/jump_spritesheet_transparent.png"
-dest_files=["res://.godot/imported/jump_spritesheet_transparent.png-e2b3b453321833db347aa7182b216fab.ctex"]
+source_file="res://Sprite/Sprite Personagem/lapis_sem_fundo (1).png"
+dest_files=["res://.godot/imported/lapis_sem_fundo (1).png-5fdd032b094bcbea9cb4f0d93fced2b1.ctex"]
 
 [params]
 
