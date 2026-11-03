@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://daw3djoam1mss"]
+
+[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/jogador.tscn" id="1_jogador"]
+[ext_resource type="PackedScene" uid="uid://nl0wnxwvo16e" path="res://Cenas/inimigo_1.tscn" id="2_inimigo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chao"]
+size = Vector2(2000, 100)
+
+[node name="TesteLapisInimigo" type="Node2D" unique_id=1033880495]
+
+[node name="Chao" type="StaticBody2D" parent="." unique_id=979185415]
+position = Vector2(628, 388)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao" unique_id=1933155164]
+shape = SubResource("RectangleShape2D_chao")
+
+[node name="Visual" type="Polygon2D" parent="Chao" unique_id=1915767083]
+color = Color(0.4, 0.3, 0.2, 1)
+polygon = PackedVector2Array(-1000, -50, 1000, -50, 1000, 50, -1000, 50)
+
+[node name="Jogador" parent="." unique_id=1607946571 instance=ExtResource("1_jogador")]
+position = Vector2(150, 200)
+
+[node name="Inimigo1" parent="." unique_id=683818855 instance=ExtResource("2_inimigo")]
+position = Vector2(784, 270)
+limite_esquerdo = -300.0
+limite_direito = 1550.0
