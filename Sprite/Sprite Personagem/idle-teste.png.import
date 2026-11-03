@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cue4hs6u48d6"
-path="res://.godot/imported/jump_spritesheet_transparent.png-e2b3b453321833db347aa7182b216fab.ctex"
+uid="uid://dymuh7wg7ywba"
+path="res://.godot/imported/idle-teste.png-c7fc5ed02261661161c5aa70e2a53d89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite/Sprite Personagem/jump_spritesheet_transparent.png"
-dest_files=["res://.godot/imported/jump_spritesheet_transparent.png-e2b3b453321833db347aa7182b216fab.ctex"]
+source_file="res://Sprite/Sprite Personagem/idle-teste.png"
+dest_files=["res://.godot/imported/idle-teste.png-c7fc5ed02261661161c5aa70e2a53d89.ctex"]
 
 [params]
 

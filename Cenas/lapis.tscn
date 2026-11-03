@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bs4b6psctpw3y"]
+
+[ext_resource type="Script" uid="uid://d31o4wllyua5s" path="res://Scripts/area_l.gd" id="1_ic6tx"]
+[ext_resource type="Texture2D" uid="uid://bru5wujfgds0h" path="res://Sprite/Sprite Personagem/lapis_sem_fundo (1).png" id="2_cim5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlew8"]
+size = Vector2(20, 4)
+
+[node name="AreaL" type="Area2D" unique_id=1047224224]
+script = ExtResource("1_ic6tx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1519192226]
+shape = SubResource("RectangleShape2D_vlew8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1701987124]
+scale = Vector2(0.020507803, 0.02587891)
+texture = ExtResource("2_cim5a")
