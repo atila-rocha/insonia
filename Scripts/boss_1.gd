@@ -2,7 +2,7 @@ extends StaticBody2D
 
 signal vida_alterada(atual: int, maxima: int)
 
-@export var vida_maxima: int = 45
+@export var vida_maxima: int = 480
 @export var velocidade: float = 100.0
 
 ## Limites de patrulha em coordenadas globais. Se ficarem em (0, 0)

@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://daw3djoam1mss"]
 
-[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/jogador.tscn" id="1_jogador"]
-[ext_resource type="PackedScene" uid="uid://nl0wnxwvo16e" path="res://Cenas/inimigo_1.tscn" id="2_inimigo"]
-[ext_resource type="PackedScene" path="res://Cenas/inimigo_2.tscn" id="5_inimigo2"]
+[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/Personagem/jogador.tscn" id="1_jogador"]
+[ext_resource type="PackedScene" uid="uid://nl0wnxwvo16e" path="res://Cenas/Bosses/boss_3.tscn" id="2_inimigo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chao"]
 size = Vector2(2000, 100)
@@ -27,5 +26,5 @@ position = Vector2(784, 270)
 limite_esquerdo = -300.0
 limite_direito = 1550.0
 
-[node name="Inimigo2" parent="." unique_id=773709771 instance=ExtResource("5_inimigo2")]
+[node name="Inimigo2" parent="." unique_id=773709771]
 position = Vector2(517, 276)
