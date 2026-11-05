@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://coqrcdcnyp8sf" path="res://Scripts/inimigo_1.gd" id="1_61mfy"]
 [ext_resource type="Texture2D" uid="uid://tb0srherbqay" path="res://icon.svg" id="2_5no14"]
+[ext_resource type="PackedScene" path="res://Cenas/barra_vida_inimigo.tscn" id="3_barra"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ssj8h"]
 atlas = ExtResource("2_5no14")
@@ -38,3 +39,6 @@ animation = &"default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDano"]
 shape = SubResource("RectangleShape2D_inimigo_dano")
+
+[node name="BarraVida" parent="." instance=ExtResource("3_barra")]
+position = Vector2(-35, -80)
