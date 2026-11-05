@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PowerUpData" format=3 uid="uid://csg84n1letbun"]
+
+[ext_resource type="Script" uid="uid://dgd712x4ftc3s" path="res://Scripts/power_up_data.gd" id="1_rsr0d"]
+[ext_resource type="Texture2D" uid="uid://chmwd3k4iohil" path="res://Assets/icons/double-jump.png" id="1_tbpfd"]
+
+[resource]
+script = ExtResource("1_rsr0d")
+id = &"double"
+nome = "Pulo Duplo"
+descricao = "Permite que Leo fazer o pulo duplo para alcançar novos"
+icone = ExtResource("1_tbpfd")
+metadata/_custom_type_script = "uid://dgd712x4ftc3s"

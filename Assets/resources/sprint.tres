@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PowerUpData" format=3 uid="uid://db2kr4kfyr8n4"]
+
+[ext_resource type="Texture2D" uid="uid://duf3jkdpajrab" path="res://Assets/icons/sprint.png" id="1_6jr1e"]
+[ext_resource type="Script" uid="uid://dgd712x4ftc3s" path="res://Scripts/power_up_data.gd" id="1_s8mlh"]
+
+[resource]
+script = ExtResource("1_s8mlh")
+id = &"sprint"
+nome = "Corrida"
+descricao = "Permite o Leo a correr por um tempo mas cuidado, ele cansa e tem que esperar um pouco para ele correr denovo"
+icone = ExtResource("1_6jr1e")
+metadata/_custom_type_script = "uid://dgd712x4ftc3s"

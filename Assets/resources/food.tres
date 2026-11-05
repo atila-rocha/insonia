@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PowerUpData" format=3 uid="uid://ctom0lncbe7fc"]
+
+[ext_resource type="Texture2D" uid="uid://dyn3lx461bib0" path="res://Assets/icons/pet-bowl.png" id="1_nlatb"]
+[ext_resource type="Script" uid="uid://dgd712x4ftc3s" path="res://Scripts/power_up_data.gd" id="1_tef5y"]
+
+[resource]
+script = ExtResource("1_tef5y")
+id = &"food"
+nome = "Comida"
+descricao = "Você ganha uma comida. Use quando o perseguidor estiver atrás de você. Ele vai parar para comer."
+icone = ExtResource("1_nlatb")
+metadata/_custom_type_script = "uid://dgd712x4ftc3s"

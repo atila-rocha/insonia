@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://8h2tkpifggio"]
+
+[ext_resource type="Script" uid="uid://dh8mp7ln7rfg5" path="res://Cenas/UI_extras/power_up_card.gd" id="1_ds54c"]
+[ext_resource type="FontFile" uid="uid://hc2kfubhedw2" path="res://Assets/Fonts/Tiny5/static/Tiny5-Regular.ttf" id="2_t3o14"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2enw"]
+bg_color = Color(0.2901961, 0.3019608, 0.3529412, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.10980392, 0.12156863, 0.16470589, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds54c"]
+bg_color = Color(0.9764706, 0.70980394, 0.39607844, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.22745098, 0.16470589, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.9764706, 0.70980394, 0.39607844, 0.54901963)
+shadow_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scuqy"]
+bg_color = Color(0.35686275, 0.37254903, 0.43137255, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.7882353, 0.52156866, 0.3137255, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.9764706, 0.70980394, 0.39607844, 0.2509804)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f5ad"]
+bg_color = Color(0.9764706, 0.70980394, 0.39607844, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.22745098, 0.16470589, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.9764706, 0.70980394, 0.39607844, 0.54901963)
+shadow_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_xmqnc"]
+font = ExtResource("2_t3o14")
+font_size = 12
+
+[node name="PowerUpCard" type="Button" unique_id=1608461577]
+custom_minimum_size = Vector2(120, 150)
+theme_override_styles/normal = SubResource("StyleBoxFlat_h2enw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ds54c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_scuqy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_1f5ad")
+toggle_mode = true
+script = ExtResource("1_ds54c")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1966823112]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1804752677]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icone" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=633579466]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nome" type="Label" parent="MarginContainer/VBoxContainer" unique_id=305819661]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_xmqnc")
+horizontal_alignment = 1
+autowrap_mode = 3
