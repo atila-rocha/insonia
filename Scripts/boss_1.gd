@@ -1,6 +1,8 @@
 extends StaticBody2D
 
-@export var vida_maxima: int = 45
+signal vida_alterada(atual: int, maxima: int)
+
+@export var vida_maxima: int = 480
 @export var velocidade: float = 100.0
 
 ## Limites de patrulha em coordenadas globais. Se ficarem em (0, 0)
@@ -15,6 +17,10 @@ var direcao: float = 1.0
 func _ready() -> void:
 	add_to_group("inimigo")
 	vida = vida_maxima
+	vida_alterada.emit(vida, vida_maxima)
+
+	if has_node("BarraVida"):
+		$BarraVida.definir_vida_maxima(vida_maxima)
 
 	if limite_direito <= limite_esquerdo:
 		limite_esquerdo = 0.0
@@ -41,8 +47,12 @@ func _atualizar_flip() -> void:
 
 
 func recebe_dano(dano: int) -> void:
-	vida -= dano
+	vida = max(vida - dano, 0)
+	vida_alterada.emit(vida, vida_maxima)
 	print("Vida inimigo: ", vida)
+
+	if has_node("BarraVida"):
+		$BarraVida.definir_vida(vida, vida_maxima)
 
 	if vida <= 0:
 		queue_free()

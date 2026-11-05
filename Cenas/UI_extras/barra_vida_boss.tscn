@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/barra_vida_boss.gd" id="1_script"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_texto"]
+font_size = 20
+font_color = Color(0.95, 0.92, 0.85, 1)
+outline_size = 5
+outline_color = Color(0.05, 0.03, 0.03, 1)
+
+[node name="BarraVidaBoss" type="Control"]
+custom_minimum_size = Vector2(520, 46)
+size = Vector2(520, 46)
+script = ExtResource("1_script")
+
+[node name="LabelValores" type="Label" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "100/100"
+label_settings = SubResource("LabelSettings_texto")
+horizontal_alignment = 1
+vertical_alignment = 1

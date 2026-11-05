@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -400.0
 const VIDA_MAXIMA = 100
 const COOLDOWN_ARREMESSO = 1.5
 
-@export var cena_lapis: PackedScene = preload("res://Cenas/lapis.tscn")
+@export var cena_lapis: PackedScene = preload("res://Cenas/Habilidades/lapis.tscn")
 
 var vida: int = VIDA_MAXIMA
 var direcao_olhando: float = 1.0

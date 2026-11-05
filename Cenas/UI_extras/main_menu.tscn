@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://djw2w60k0rn5k" path="res://Assets/main_menu_jpg.jpg" id="1_bd8gm"]
 [ext_resource type="FontFile" uid="uid://bhdt5y57axanh" path="res://Assets/Fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="1_hn0nd"]
-[ext_resource type="Script" uid="uid://bk5fa8hkiyxos" path="res://Cenas/main_menu.gd" id="1_jeejk"]
-[ext_resource type="PackedScene" uid="uid://unkqfeveojxu" path="res://Cenas/button.tscn" id="2_hn0nd"]
+[ext_resource type="Script" uid="uid://bk5fa8hkiyxos" path="res://Scripts/main_menu.gd" id="1_jeejk"]
+[ext_resource type="PackedScene" uid="uid://unkqfeveojxu" path="res://Cenas/UI_extras/button.tscn" id="2_hn0nd"]
 [ext_resource type="Theme" uid="uid://c6fb0p3vkjlay" path="res://Assets/menu_theme.tres" id="2_ybyo8"]
 [ext_resource type="Texture2D" uid="uid://m8g8obto8lxi" path="res://Assets/moon-sprite.png" id="5_ch3q6"]
 
