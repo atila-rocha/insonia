@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c2wyyjvj6x05x"]
+
+[ext_resource type="Script" uid="uid://d4isnpwu1opmt" path="res://Scripts/holofote.gd" id="1_kin8k"]
+
+[node name="Holofote" type="PointLight2D" unique_id=1793825507]
+script = ExtResource("1_kin8k")
