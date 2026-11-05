@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://dgh1o7bs2odqu"]
+
+[ext_resource type="Texture2D" uid="uid://djw2w60k0rn5k" path="res://Assets/main_menu_jpg.jpg" id="1_bd8gm"]
+[ext_resource type="FontFile" uid="uid://bhdt5y57axanh" path="res://Assets/Fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="1_hn0nd"]
+[ext_resource type="Script" uid="uid://bk5fa8hkiyxos" path="res://Cenas/main_menu.gd" id="1_jeejk"]
+[ext_resource type="PackedScene" uid="uid://unkqfeveojxu" path="res://Cenas/button.tscn" id="2_hn0nd"]
+[ext_resource type="Theme" uid="uid://c6fb0p3vkjlay" path="res://Assets/menu_theme.tres" id="2_ybyo8"]
+[ext_resource type="Texture2D" uid="uid://m8g8obto8lxi" path="res://Assets/moon-sprite.png" id="5_ch3q6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pfblw"]
+font = ExtResource("1_hn0nd")
+font_size = 64
+font_color = Color(0.7882353, 0.8235294, 0.84705883, 1)
+outline_size = 4
+outline_color = Color(0.043137256, 0.0627451, 0.1254902, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(0, 3)
+
+[node name="MainMenu" type="Control" unique_id=193003182]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jeejk")
+
+[node name="FundoEscuro" type="ColorRect" parent="." unique_id=647056504]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.043137256, 0.0627451, 0.1254902, 1)
+
+[node name="Background" type="TextureRect" parent="." unique_id=816546269]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 389.0
+texture = ExtResource("1_bd8gm")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2075674006]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -242.0
+offset_right = 124.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1163994341]
+layout_mode = 2
+theme = ExtResource("2_ybyo8")
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=519381674]
+layout_mode = 2
+text = "INSÔNIA"
+label_settings = SubResource("LabelSettings_pfblw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" parent="MarginContainer/VBoxContainer" unique_id=308060098 instance=ExtResource("2_hn0nd")]
+layout_mode = 2
+text = "JOGAR"
+
+[node name="Button2" parent="MarginContainer/VBoxContainer" unique_id=1150535739 instance=ExtResource("2_hn0nd")]
+layout_mode = 2
+text = "INICIAR NOVO JOGO"
+
+[node name="Button3" parent="MarginContainer/VBoxContainer" unique_id=1749171093 instance=ExtResource("2_hn0nd")]
+layout_mode = 2
+text = "CODEX"
+
+[node name="Button4" parent="MarginContainer/VBoxContainer" unique_id=595851722 instance=ExtResource("2_hn0nd")]
+layout_mode = 2
+text = "CONFIGURAÇÕES"
+
+[node name="Button5" parent="MarginContainer/VBoxContainer" unique_id=1817870189 instance=ExtResource("2_hn0nd")]
+layout_mode = 2
+text = "SAIR"
+
+[node name="Moon" type="TextureRect" parent="." unique_id=871797866]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 452.0
+offset_top = 648.0
+offset_right = 523.0
+offset_bottom = 680.0
+mouse_filter = 2
+texture = ExtResource("5_ch3q6")
+expand_mode = 1
+stretch_mode = 5
