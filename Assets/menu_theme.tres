@@ -1,0 +1,23 @@
+[gd_resource type="Theme" format=3 uid="uid://c6fb0p3vkjlay"]
+
+[ext_resource type="FontFile" uid="uid://hc2kfubhedw2" path="res://Assets/Fonts/Tiny5/static/Tiny5-Regular.ttf" id="1_358en"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1f5tg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3qhg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_358en"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_whbv6"]
+
+[resource]
+default_font = ExtResource("1_358en")
+default_font_size = 24
+Button/colors/font_color = Color(0.62352943, 0.7058824, 0.78431374, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_1f5tg")
+Button/styles/hover = SubResource("StyleBoxEmpty_g3qhg")
+Button/styles/normal = SubResource("StyleBoxEmpty_358en")
+Button/styles/pressed = SubResource("StyleBoxEmpty_whbv6")
