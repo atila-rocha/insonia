@@ -7,6 +7,8 @@
 size = Vector2(20, 4)
 
 [node name="AreaL" type="Area2D" unique_id=1047224224]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_ic6tx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1519192226]

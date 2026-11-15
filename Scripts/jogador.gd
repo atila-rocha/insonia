@@ -1,23 +1,47 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -530.0
 const VIDA_MAXIMA = 100
 const COOLDOWN_ARREMESSO = 1.5
+const DANO_PULO = 8
+
+# Bit da camada de física "Inimigos" (ver Projeto > Configurações do Projeto
+# > Camadas de Física 2D). Usado para tirar o jogador da detecção de
+# inimigos durante a invencibilidade, sem afastá-lo do chão.
+const CAMADA_INIMIGOS = 4
+
+# Quanto tempo o jogador fica "imune" depois de levar um dano, para não
+# tomar vários hits seguidos ficando encostado no inimigo (igual ao Mario
+# piscando depois de ser atingido).
+const DURACAO_INVENCIVEL = 1.0
 
 @export var cena_lapis: PackedScene = preload("res://Cenas/Habilidades/lapis.tscn")
 
 var vida: int = VIDA_MAXIMA
 var direcao_olhando: float = 1.0
 var ultimo_arremesso_tempo: float = -COOLDOWN_ARREMESSO
+var invencivel: bool = false
+var _camada_colisao_original: int
+var _mascara_colisao_original: int
+
+@onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _ready() -> void:
 	add_to_group("jogador")
+	_camada_colisao_original = collision_layer
+	_mascara_colisao_original = collision_mask
+
+	if has_node("BarraVida"):
+		$BarraVida.definir_vida_maxima(VIDA_MAXIMA)
 
 
 func _physics_process(delta: float) -> void:
+	# Guarda se já estava caindo antes deste frame, para saber depois do
+	# move_and_slide() se o que aconteceu foi um "pulo em cima" do inimigo.
+	var estava_caindo := velocity.y > 0.0
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -35,6 +59,49 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+	if estava_caindo:
+		_verificar_pulo_em_inimigo()
+
+	_atualizar_animacao()
+
+
+func _atualizar_animacao() -> void:
+	_sprite.flip_h = direcao_olhando < 0.0
+
+	if not is_on_floor():
+		_tocar_animacao("jump")
+	elif velocity.x != 0.0:
+		_tocar_animacao("run")
+	else:
+		_tocar_animacao("idle")
+
+
+func _tocar_animacao(nome: String) -> void:
+	if _sprite.animation == nome:
+		return
+
+	# Algumas animações (ex.: "run"/"jump") ainda não têm frames importados —
+	# evita travar/sumir o sprite tentando tocar uma animação vazia.
+	if _sprite.sprite_frames and _sprite.sprite_frames.get_frame_count(nome) == 0:
+		return
+
+	_sprite.play(nome)
+
+
+func _verificar_pulo_em_inimigo() -> void:
+	for i in get_slide_collision_count():
+		var colisao := get_slide_collision(i)
+		var corpo := colisao.get_collider()
+
+		# Só conta como "pulo em cima" se o contato veio de cima do inimigo
+		# (normal apontando para cima), não de um encontrão pela lateral.
+		if corpo and corpo.is_in_group("inimigo") and colisao.get_normal().y < -0.5:
+			if corpo.has_method("recebe_dano"):
+				corpo.recebe_dano(DANO_PULO)
+				# Pequeno quique pra cima, pra não ficar "grudado" em pé em
+				# cima do inimigo — fica mais parecido com o pulo do Mario.
+				velocity.y = JUMP_VELOCITY * 0.5
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -55,7 +122,7 @@ func arremessar() -> void:
 	get_tree().current_scene.add_child(lapis)
 	# Sai do centro do corpo do jogador (centro do sprite), não da origem
 	# do CharacterBody2D, que fica deslocada acima/à esquerda do corpo.
-	lapis.global_position = $AnimatedSprite2D.global_position + Vector2(direcao_olhando * 15.0, 0.0)
+	lapis.global_position = _sprite.global_position + Vector2(direcao_olhando * 15.0, 0.0)
 	lapis.direcao = direcao_olhando
 
 	# Se o jogador estiver no ar, o lápis segue uma trajetória de
@@ -66,9 +133,42 @@ func arremessar() -> void:
 
 
 func receber_dano(dano: int) -> void:
-	vida -= dano
+	# Enquanto estiver invencível, ignora novos hits — evita levar vários
+	# danos seguidos só por ficar encostado no inimigo.
+	if invencivel:
+		return
+
+	vida = max(vida - dano, 0)
 	print("Vida do jogador: ", vida)
+
+	if has_node("BarraVida"):
+		$BarraVida.definir_vida(vida, VIDA_MAXIMA)
 
 	if vida <= 0:
 		print("Jogador morreu")
 		queue_free()
+		return
+
+	_ativar_invencibilidade()
+
+
+func _ativar_invencibilidade() -> void:
+	invencivel = true
+
+	# Desliga de verdade a colisão do jogador com inimigos durante esse
+	# tempo: zera a própria camada (ninguém o detecta) e tira dos inimigos
+	# da sua máscara (ele não empurra/é empurrado por eles). O chão continua
+	# na máscara, então ele não cai por baixo do mundo.
+	collision_layer = 0
+	collision_mask = _mascara_colisao_original & ~CAMADA_INIMIGOS
+
+	var tween := create_tween()
+	tween.set_loops(int(DURACAO_INVENCIVEL / 0.16))
+	tween.tween_property(self, "modulate:a", 0.25, 0.08)
+	tween.tween_property(self, "modulate:a", 1.0, 0.08)
+
+	await get_tree().create_timer(DURACAO_INVENCIVEL).timeout
+	invencivel = false
+	collision_layer = _camada_colisao_original
+	collision_mask = _mascara_colisao_original
+	modulate.a = 1.0

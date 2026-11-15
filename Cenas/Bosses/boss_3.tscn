@@ -141,9 +141,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_inimigo_dano"]
-size = Vector2(152, 100)
+size = Vector2(152, 70)
 
-[node name="inimigo_1" type="StaticBody2D" unique_id=704822685]
+[node name="boss_3" type="AnimatableBody2D" unique_id=704822685]
+rotation = 0.042492863
+collision_layer = 4
+collision_mask = 1
+sync_to_physics = true
 script = ExtResource("1_61mfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=761574723]
@@ -151,12 +155,15 @@ position = Vector2(18.5, 0)
 shape = SubResource("RectangleShape2D_inimigo_corpo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1699243863]
+position = Vector2(0, 7)
 sprite_frames = SubResource("SpriteFrames_vlew8")
-animation = &"rolando"
-frame_progress = 0.4299295
+animation = &"correndo"
+frame_progress = 0.0
 
 [node name="AreaDano" type="Area2D" parent="." unique_id=106688205]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDano" unique_id=1189893083]
-position = Vector2(17, 5)
+position = Vector2(17, 20)
 shape = SubResource("RectangleShape2D_inimigo_dano")
