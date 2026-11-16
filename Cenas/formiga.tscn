@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cl2oym5qhtdkb"]
+
+[ext_resource type="Texture2D" uid="uid://deekhd36jt22h" path="res://Sprite/Formiga/walk/ant_walk_1.png" id="1_0x1xn"]
+[ext_resource type="Texture2D" uid="uid://csbtyqc30eoxu" path="res://Sprite/Formiga/walk/ant_walk_2.png" id="2_msm3k"]
+[ext_resource type="Texture2D" uid="uid://ckyhod3rsem45" path="res://Sprite/Formiga/walk/ant_walk_3.png" id="3_mxr7t"]
+[ext_resource type="Texture2D" uid="uid://deoj5authupf7" path="res://Sprite/Formiga/attack/ant_attack_1.png" id="4_a6wj3"]
+[ext_resource type="Texture2D" uid="uid://chwjd5l1bfflx" path="res://Sprite/Formiga/attack/ant_attack_2.png" id="5_crelh"]
+[ext_resource type="Texture2D" uid="uid://dydf37pioedlj" path="res://Sprite/Formiga/attack/ant_attack_3.png" id="6_4gxkv"]
+[ext_resource type="Texture2D" uid="uid://bk4ln5wrrg88t" path="res://Sprite/Formiga/dead/ant_dead_1.png" id="7_hvygd"]
+[ext_resource type="Texture2D" uid="uid://cjkw5vuhnjfj5" path="res://Sprite/Formiga/dead/ant_dead_2.png" id="8_de2df"]
+[ext_resource type="Texture2D" uid="uid://cupcgwk41j420" path="res://Sprite/Formiga/dead/ant_dead_3.png" id="9_4ejs1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c0xmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0x1xn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_msm3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mxr7t")
+}],
+"loop": 1,
+"name": &"Andar",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_a6wj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_crelh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4gxkv")
+}],
+"loop": 0,
+"name": &"Atacar",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_hvygd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_de2df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4ejs1")
+}],
+"loop": 0,
+"name": &"Morrer",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msah1"]
+size = Vector2(129, 68)
+
+[node name="Formiga" type="CharacterBody2D" unique_id=952732373]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=246230142]
+scale = Vector2(1.5, 1.576)
+sprite_frames = SubResource("SpriteFrames_c0xmb")
+animation = &"Andar"
+frame = 1
+frame_progress = 0.33913714
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1905150435]
+position = Vector2(8, 19)
+shape = SubResource("RectangleShape2D_msah1")
