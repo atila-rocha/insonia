@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dticpfitdh36"]
+
+[ext_resource type="PackedScene" uid="uid://bt5mx4ucuki65" path="res://Cenas/fase_1_1.tscn" id="1_y62l7"]
+[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/jogador.tscn" id="2_obwvj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0xmb"]
+size = Vector2(1400, 40)
+
+[node name="TesteHolofote" type="Node2D" unique_id=1603203227]
+
+[node name="Node2D" parent="." unique_id=1493714914 instance=ExtResource("1_y62l7")]
+
+[node name="Node2D2" parent="." unique_id=1561455625 instance=ExtResource("2_obwvj")]
+position = Vector2(390, 256)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=412266538]
+position = Vector2(600, 420)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=593251174]
+shape = SubResource("RectangleShape2D_c0xmb")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctmx7uu3wvijt" path="res://Scripts/jogador.gd" id="1_k5ljr"]
 [ext_resource type="Texture2D" uid="uid://ctxjwbm4m7qk6" path="res://Sprite/Sprite Personagem/idle-respirando.png" id="2_k5ljr"]
+[ext_resource type="PackedScene" uid="uid://c2wyyjvj6x05x" path="res://Cenas/holofote.tscn" id="3_j1gus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1gus"]
 atlas = ExtResource("2_k5ljr")
@@ -189,3 +190,7 @@ frame_progress = 0.3576459
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1795723956]
 position = Vector2(168.5, 105.5)
 shape = SubResource("RectangleShape2D_bekt7")
+
+[node name="Holofote" parent="CharacterBody2D" unique_id=1793825507 instance=ExtResource("3_j1gus")]
+position = Vector2(172, 106)
+ambiente_normal = Color(0.23529412, 0.26666668, 0.4, 1)
