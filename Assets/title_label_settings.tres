@@ -1,0 +1,13 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dl2jioq7c48px"]
+
+[ext_resource type="FontFile" uid="uid://bhdt5y57axanh" path="res://Assets/Fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="1_rkylb"]
+
+[resource]
+font = ExtResource("1_rkylb")
+font_size = 64
+font_color = Color(0.7882353, 0.8235294, 0.84705883, 1)
+outline_size = 4
+outline_color = Color(0.043137256, 0.0627451, 0.1254902, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(0, 3)
