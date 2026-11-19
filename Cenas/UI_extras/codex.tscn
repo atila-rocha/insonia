@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://cwarhyqklsgfg"]
+
+[ext_resource type="Theme" uid="uid://wr5eryqnsvxl" path="res://Assets/menu_test.tres" id="1_02oof"]
+[ext_resource type="PackedScene" uid="uid://unkqfeveojxu" path="res://Cenas/UI_extras/button.tscn" id="1_b0d7u"]
+[ext_resource type="Script" uid="uid://clk61es3aavxq" path="res://Cenas/UI_extras/codex.gd" id="1_ntfn5"]
+[ext_resource type="LabelSettings" uid="uid://dl2jioq7c48px" path="res://Assets/title_label_settings.tres" id="1_o4en3"]
+[ext_resource type="Script" uid="uid://cta5kui4vhqkh" path="res://Scripts/entrada_codex.gd" id="2_0jddy"]
+[ext_resource type="Resource" uid="uid://q317m7hbwllf" path="res://Assets/resources/ema.tres" id="3_02oof"]
+[ext_resource type="Resource" uid="uid://cgrf765mlmcav" path="res://Assets/resources/gato.tres" id="4_vq15g"]
+[ext_resource type="Resource" uid="uid://bw84x2jg6encu" path="res://Assets/resources/gamba.tres" id="5_ds74w"]
+[ext_resource type="Resource" uid="uid://c70pb7lcyb8lm" path="res://Assets/resources/pombo.tres" id="6_1l61x"]
+[ext_resource type="Resource" uid="uid://c07a2iha5n3h0" path="res://Assets/resources/formiga.tres" id="7_aqg6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02oof"]
+bg_color = Color(0.07058824, 0.09411765, 0.1254902, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.65882355, 0.72156864, 0.78431374, 1)
+
+[node name="Codex" type="Control" unique_id=2034193592]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_02oof")
+script = ExtResource("1_ntfn5")
+entradas = Array[ExtResource("2_0jddy")]([ExtResource("3_02oof"), ExtResource("4_vq15g"), ExtResource("5_ds74w"), ExtResource("6_1l61x"), ExtResource("7_aqg6b")])
+
+[node name="Fundo" type="ColorRect" parent="." unique_id=1331725173]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7019608)
+
+[node name="Painel" type="PanelContainer" parent="." unique_id=871820575]
+custom_minimum_size = Vector2(900, 520)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -29.0
+offset_right = 20.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_02oof")
+
+[node name="Margem" type="MarginContainer" parent="Painel" unique_id=284441984]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Coluna" type="VBoxContainer" parent="Painel/Margem" unique_id=108373212]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Titulo" type="Label" parent="Painel/Margem/Coluna" unique_id=1120722321]
+layout_mode = 2
+text = "CODEX"
+label_settings = ExtResource("1_o4en3")
+horizontal_alignment = 1
+
+[node name="Corpo" type="HBoxContainer" parent="Painel/Margem/Coluna" unique_id=1146963663]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Rolagem" type="ScrollContainer" parent="Painel/Margem/Coluna/Corpo" unique_id=397101762]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ListaEntradas" type="VBoxContainer" parent="Painel/Margem/Coluna/Corpo/Rolagem" unique_id=779124591]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Detalhe" type="VBoxContainer" parent="Painel/Margem/Coluna/Corpo" unique_id=677157466]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ImagemPlaceholder" type="ColorRect" parent="Painel/Margem/Coluna/Corpo/Detalhe" unique_id=88980671]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+color = Color(0.22745098, 0.26666668, 0.3137255, 1)
+
+[node name="NomeLabel" type="Label" parent="Painel/Margem/Coluna/Corpo/Detalhe" unique_id=1740522331]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Nome"
+
+[node name="TextoDetalhe" type="RichTextLabel" parent="Painel/Margem/Coluna/Corpo/Detalhe" unique_id=846139306]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="BotaoSair" parent="Painel/Margem/Coluna" unique_id=308060098 instance=ExtResource("1_b0d7u")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SAIR DO CODEX"

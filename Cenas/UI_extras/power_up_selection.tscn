@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://ct5qopy6th3h3"]
+
+[ext_resource type="FontFile" uid="uid://hc2kfubhedw2" path="res://Assets/Fonts/Tiny5/static/Tiny5-Regular.ttf" id="1_mhxlp"]
+[ext_resource type="Script" uid="uid://b446ds0v7moa8" path="res://Cenas/UI_extras/power_up_selection.gd" id="1_u32oe"]
+[ext_resource type="PackedScene" uid="uid://unkqfeveojxu" path="res://Cenas/UI_extras/button.tscn" id="2_jlshb"]
+[ext_resource type="Script" uid="uid://dgd712x4ftc3s" path="res://Scripts/power_up_data.gd" id="2_xmqnc"]
+[ext_resource type="Resource" uid="uid://csg84n1letbun" path="res://Assets/resources/double_jump.tres" id="3_3m0lo"]
+[ext_resource type="Resource" uid="uid://ctom0lncbe7fc" path="res://Assets/resources/food.tres" id="4_mgukr"]
+[ext_resource type="Resource" uid="uid://bgpadyr6wiy6j" path="res://Assets/resources/light.tres" id="5_1pple"]
+[ext_resource type="Resource" uid="uid://db2kr4kfyr8n4" path="res://Assets/resources/sprint.tres" id="6_j65oc"]
+[ext_resource type="PackedScene" uid="uid://8h2tkpifggio" path="res://Cenas/UI_extras/power_up_card.tscn" id="7_g74jn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wfave"]
+font = ExtResource("1_mhxlp")
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_77sha"]
+font = ExtResource("1_mhxlp")
+font_size = 24
+font_color = Color(0.9764706, 0.70980394, 0.39607844, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5adxg"]
+font = ExtResource("1_mhxlp")
+
+[node name="PowerUpSelection" type="Control" unique_id=1047191628]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u32oe")
+pool = Array[ExtResource("2_xmqnc")]([ExtResource("3_3m0lo"), ExtResource("4_mgukr"), ExtResource("5_1pple"), ExtResource("6_j65oc")])
+cena_carta = ExtResource("7_g74jn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=72878595]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08235294, 0.101960786, 0.15686275, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1486891174]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=871216648]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1790132649]
+layout_mode = 2
+text = "Escolha seu Power-up"
+label_settings = SubResource("LabelSettings_wfave")
+horizontal_alignment = 1
+
+[node name="Cartas" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1126400465]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=2113226813]
+custom_minimum_size = Vector2(420, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=1322499195]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1045205017]
+layout_mode = 2
+
+[node name="NomeLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=851890684]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_77sha")
+
+[node name="DescricaoLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1834422653]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_5adxg")
+autowrap_mode = 3
+
+[node name="ConfirmarButton" parent="MarginContainer/VBoxContainer" unique_id=308060098 instance=ExtResource("2_jlshb")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Confirmar"

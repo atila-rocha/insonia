@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EntradaCodex" format=3 uid="uid://cgrf765mlmcav"]
+
+[ext_resource type="Script" uid="uid://cta5kui4vhqkh" path="res://Scripts/entrada_codex.gd" id="1_ipc6j"]
+
+[resource]
+script = ExtResource("1_ipc6j")
+id = &"gato"
+nome = "GATO"
+metadata/_custom_type_script = "uid://cta5kui4vhqkh"

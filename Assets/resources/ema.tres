@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EntradaCodex" format=3 uid="uid://q317m7hbwllf"]
+
+[ext_resource type="Script" uid="uid://cta5kui4vhqkh" path="res://Scripts/entrada_codex.gd" id="1_c4fji"]
+
+[resource]
+script = ExtResource("1_c4fji")
+id = &"ema"
+nome = "EMA"
+representa = "Manifestação do excesso de preocupação e cobrança do projeto de Leo. Monstro feito de névoa e ansiedade."
+comportamento = "Persegue em alta velocidade, em linha reta. Possui alta inércia, demorando para frear ou inverter o sentido."
+fraqueza = "Mudanças bruscas de direção."
+metadata/_custom_type_script = "uid://cta5kui4vhqkh"

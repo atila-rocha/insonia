@@ -1,21 +1,11 @@
 [gd_scene format=3 uid="uid://dgh1o7bs2odqu"]
 
 [ext_resource type="Texture2D" uid="uid://djw2w60k0rn5k" path="res://Assets/main_menu_jpg.jpg" id="1_bd8gm"]
-[ext_resource type="FontFile" uid="uid://bhdt5y57axanh" path="res://Assets/Fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="1_hn0nd"]
 [ext_resource type="Script" uid="uid://bk5fa8hkiyxos" path="res://Scripts/main_menu.gd" id="1_jeejk"]
 [ext_resource type="PackedScene" uid="uid://unkqfeveojxu" path="res://Cenas/UI_extras/button.tscn" id="2_hn0nd"]
 [ext_resource type="Theme" uid="uid://c6fb0p3vkjlay" path="res://Assets/menu_theme.tres" id="2_ybyo8"]
+[ext_resource type="LabelSettings" uid="uid://dl2jioq7c48px" path="res://Assets/title_label_settings.tres" id="4_l7wm4"]
 [ext_resource type="Texture2D" uid="uid://m8g8obto8lxi" path="res://Assets/moon-sprite.png" id="5_ch3q6"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_pfblw"]
-font = ExtResource("1_hn0nd")
-font_size = 64
-font_color = Color(0.7882353, 0.8235294, 0.84705883, 1)
-outline_size = 4
-outline_color = Color(0.043137256, 0.0627451, 0.1254902, 1)
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.6)
-shadow_offset = Vector2(0, 3)
 
 [node name="MainMenu" type="Control" unique_id=193003182]
 layout_mode = 3
@@ -66,7 +56,7 @@ theme_override_constants/separation = 6
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=519381674]
 layout_mode = 2
 text = "INSÔNIA"
-label_settings = SubResource("LabelSettings_pfblw")
+label_settings = ExtResource("4_l7wm4")
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://dj2dl1rcj3fm2"]
+
+[ext_resource type="Theme" uid="uid://c6fb0p3vkjlay" path="res://Assets/menu_theme.tres" id="1_g74tw"]
+[ext_resource type="PackedScene" uid="uid://unkqfeveojxu" path="res://Cenas/UI_extras/button.tscn" id="1_xlkkc"]
+[ext_resource type="Script" uid="uid://b03wpgjo7ddst" path="res://Cenas/UI_extras/menu_pausa.gd" id="1_yk6or"]
+[ext_resource type="LabelSettings" uid="uid://dl2jioq7c48px" path="res://Assets/title_label_settings.tres" id="3_dbp67"]
+[ext_resource type="FontFile" uid="uid://bhdt5y57axanh" path="res://Assets/Fonts/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="4_kup27"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oq6bj"]
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.78431374, 0.8039216, 0.8392157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oq6bj"]
+font = ExtResource("4_kup27")
+font_size = 48
+font_color = Color(0.7882353, 0.8235294, 0.84705883, 1)
+outline_size = 4
+outline_color = Color(0.043137256, 0.0627451, 0.1254902, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni3s8"]
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78431374, 0.8039216, 0.8392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr8i2"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8980392, 0.6039216, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hamky"]
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8980392, 0.6039216, 0.2901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8jbf"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8980392, 0.6039216, 0.2901961, 1)
+
+[node name="MenuPausa" type="CanvasLayer" unique_id=555942100]
+process_mode = 3
+layer = 10
+script = ExtResource("1_yk6or")
+
+[node name="Escurecer" type="ColorRect" parent="." unique_id=1077963408]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Centro" type="CenterContainer" parent="." unique_id=1345679569]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_g74tw")
+
+[node name="Painel" type="PanelContainer" parent="Centro" unique_id=21512750]
+custom_minimum_size = Vector2(520, 520)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oq6bj")
+
+[node name="Margem" type="MarginContainer" parent="Centro/Painel" unique_id=2093831708]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Coluna" type="VBoxContainer" parent="Centro/Painel/Margem" unique_id=53200801]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Titulojogo" type="Label" parent="Centro/Painel/Margem/Coluna" unique_id=1499014991]
+layout_mode = 2
+text = "INSÔNIA"
+label_settings = ExtResource("3_dbp67")
+horizontal_alignment = 1
+
+[node name="TituloPausa" type="Label" parent="Centro/Painel/Margem/Coluna" unique_id=1038953163]
+layout_mode = 2
+text = "PAUSA"
+label_settings = SubResource("LabelSettings_oq6bj")
+horizontal_alignment = 1
+
+[node name="Espaco1" type="Control" parent="Centro/Painel/Margem/Coluna" unique_id=256775148]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="BotoesCima" type="VBoxContainer" parent="Centro/Painel/Margem/Coluna" unique_id=465388317]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BtnContinuar" parent="Centro/Painel/Margem/Coluna/BotoesCima" unique_id=308060098 instance=ExtResource("1_xlkkc")]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ni3s8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nr8i2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hamky")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e8jbf")
+text = "CONTINUAR"
+
+[node name="BtnCodex" parent="Centro/Painel/Margem/Coluna/BotoesCima" unique_id=1257103922 instance=ExtResource("1_xlkkc")]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ni3s8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nr8i2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hamky")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e8jbf")
+text = "CODEX"
+
+[node name="btnConfig" parent="Centro/Painel/Margem/Coluna/BotoesCima" unique_id=108274428 instance=ExtResource("1_xlkkc")]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ni3s8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nr8i2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hamky")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e8jbf")
+text = "CONFIGURAÇÕES"
+
+[node name="Espaco2" type="Control" parent="Centro/Painel/Margem/Coluna" unique_id=1468639303]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="btnSair" parent="Centro/Painel/Margem/Coluna" unique_id=595601284 instance=ExtResource("1_xlkkc")]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ni3s8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nr8i2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hamky")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e8jbf")
+text = "SAIR PARA MENU PRINCIPAL"
