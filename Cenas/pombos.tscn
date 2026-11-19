@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dngpo1lti7e1h"]
+
+[ext_resource type="Script" uid="uid://b6oailsqj08w4" path="res://Scripts/perseguidor.gd" id="1_6qkho"]
+[ext_resource type="Texture2D" uid="uid://tb0srherbqay" path="res://icon.svg" id="2_v56fw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v56fw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v56fw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0xmb"]
+radius = 28.0
+
+[node name="Pombos" type="CharacterBody2D" unique_id=33447192]
+script = ExtResource("1_6qkho")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2094051862]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_v56fw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1819824323]
+shape = SubResource("CircleShape2D_c0xmb")
