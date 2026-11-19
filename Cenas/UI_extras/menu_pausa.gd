@@ -39,7 +39,9 @@ func fechar() -> void:
 
 
 func _ao_apertar_codex() -> void:
-	pass  # PENDENTE: abrir a tela do Codex
+	var codex = load("res://Cenas/UI_extras/codex.tscn").instantiate()
+	add_child(codex)
+	codex.fechado.connect(btn_codex.grab_focus)
 
 
 func _ao_apertar_config() -> void:

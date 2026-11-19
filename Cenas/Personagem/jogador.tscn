@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ctmx7uu3wvijt" path="res://Scripts/jogador.gd" id="1_k5ljr"]
 [ext_resource type="Texture2D" uid="uid://ctxjwbm4m7qk6" path="res://Sprite/Sprite Personagem/idle-respirando.png" id="2_k5ljr"]
 [ext_resource type="PackedScene" path="res://Cenas/UI_extras/barra_vida_inimigo.tscn" id="3_barra"]
+[ext_resource type="PackedScene" uid="uid://c2wyyjvj6x05x" path="res://Cenas/holofote.tscn" id="14_holo"]
 [ext_resource type="Texture2D" uid="uid://b66wuiuh1chsb" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_01.png" id="20_pulo01"]
 [ext_resource type="Texture2D" uid="uid://ft0fd50d31ki" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_02.png" id="21_pulo02"]
 [ext_resource type="Texture2D" uid="uid://bjmut88goskbx" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_03.png" id="22_pulo03"]
@@ -173,19 +174,24 @@ collision_mask = 5
 script = ExtResource("1_k5ljr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=91408178]
-position = Vector2(190.0973, 93.27922)
+position = Vector2(0.5973, -0.22078)
 scale = Vector2(0.21929058, 0.20882222)
 sprite_frames = SubResource("SpriteFrames_vlew8")
 animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1795723956]
-position = Vector2(189.5, 93.5)
 shape = SubResource("RectangleShape2D_bekt7")
 
 [node name="BarraVida" parent="CharacterBody2D" unique_id=430194574 instance=ExtResource("3_barra")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 143.0
-offset_top = 70.0
-offset_right = 213.0
-offset_bottom = 80.0
+offset_left = -46.5
+offset_top = -42.5
+offset_right = 23.5
+offset_bottom = -32.5
+
+[node name="Holofote" parent="CharacterBody2D" instance=ExtResource("14_holo")]
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0

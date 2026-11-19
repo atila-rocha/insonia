@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://dngpo1lti7e1h"]
+
+[ext_resource type="Script" uid="uid://b6oailsqj08w4" path="res://Scripts/perseguidor.gd" id="1_6qkho"]
+[ext_resource type="Texture2D" uid="uid://cytp6f0sg1aki" path="res://Sprite/Pombos/pigeon_eat-Sheet.png" id="2_ciy4m"]
+[ext_resource type="Texture2D" uid="uid://7u6oenc3y2va" path="res://Sprite/Pombos/pigeon_fiy-Sheet.png" id="3_trqmo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rr48"]
+atlas = ExtResource("2_ciy4m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic4wm"]
+atlas = ExtResource("2_ciy4m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy1s2"]
+atlas = ExtResource("2_ciy4m")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odsuh"]
+atlas = ExtResource("2_ciy4m")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi0bd"]
+atlas = ExtResource("3_trqmo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l7xp"]
+atlas = ExtResource("3_trqmo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtpn7"]
+atlas = ExtResource("3_trqmo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yelqh"]
+atlas = ExtResource("3_trqmo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueqbo"]
+atlas = ExtResource("3_trqmo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sxwp"]
+atlas = ExtResource("3_trqmo")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7svc"]
+atlas = ExtResource("3_trqmo")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v56fw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rr48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic4wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy1s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odsuh")
+}],
+"loop": 1,
+"name": &"comer",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi0bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l7xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtpn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yelqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueqbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sxwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7svc")
+}],
+"loop": 1,
+"name": &"voar",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0xmb"]
+radius = 28.0
+
+[node name="Pombos" type="CharacterBody2D" unique_id=33447192]
+script = ExtResource("1_6qkho")
+sprite_olha_para_direita = true
+posicao_olhos = Vector2(13, -11)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2094051862]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_v56fw")
+animation = &"voar"
+autoplay = "voar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1819824323]
+shape = SubResource("CircleShape2D_c0xmb")

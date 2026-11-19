@@ -1,0 +1,98 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/fase_1.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://boinxllbuxcjg" path="res://fase_1.tscn" id="2_mapa"]
+[ext_resource type="Script" path="res://Scripts/sorteio_porta.gd" id="3_sorteio"]
+[ext_resource type="PackedScene" path="res://Cenas/Objetos/banco.tscn" id="4_banco"]
+[ext_resource type="PackedScene" path="res://Cenas/Objetos/bau_comida.tscn" id="5_bau"]
+[ext_resource type="PackedScene" path="res://Cenas/formiga.tscn" id="6_formiga"]
+[ext_resource type="PackedScene" uid="uid://dngpo1lti7e1h" path="res://Cenas/pombos.tscn" id="7_pombos"]
+[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/Personagem/jogador.tscn" id="8_jogador"]
+[ext_resource type="PackedScene" path="res://Cenas/UI_extras/hud.tscn" id="9_hud"]
+[ext_resource type="PackedScene" path="res://Cenas/UI_extras/menu_pausa.tscn" id="10_pausa"]
+
+[node name="Fase1Jogo" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Mapa" parent="." instance=ExtResource("2_mapa")]
+
+[node name="SorteioPorta" type="Node2D" parent="." node_paths=PackedStringArray("tilemap")]
+script = ExtResource("3_sorteio")
+tilemap = NodePath("../Mapa/Cenario_Principal_Fase1/TileMapLayer_Colisao")
+
+[node name="Entrada" type="Marker2D" parent="SorteioPorta"]
+position = Vector2(40, 800)
+
+[node name="PortaA" type="Marker2D" parent="SorteioPorta"]
+position = Vector2(60, 440)
+
+[node name="PortaB" type="Marker2D" parent="SorteioPorta"]
+position = Vector2(1890, 800)
+
+[node name="PortaC" type="Marker2D" parent="SorteioPorta"]
+position = Vector2(1950, 230)
+
+[node name="PortaD" type="Marker2D" parent="SorteioPorta"]
+position = Vector2(1640, 570)
+
+[node name="Bancos" type="Node2D" parent="."]
+
+[node name="Banco1" parent="Bancos" instance=ExtResource("4_banco")]
+position = Vector2(190, 800)
+
+
+[node name="Banco2" parent="Bancos" instance=ExtResource("4_banco")]
+position = Vector2(560, 440)
+
+
+[node name="Banco3" parent="Bancos" instance=ExtResource("4_banco")]
+position = Vector2(1560, 800)
+
+
+[node name="Comida" type="Node2D" parent="."]
+
+[node name="Bau1" parent="Comida" instance=ExtResource("5_bau")]
+position = Vector2(845, 590)
+
+
+[node name="Bau2" parent="Comida" instance=ExtResource("5_bau")]
+position = Vector2(1395, 690)
+
+
+[node name="Bau3" parent="Comida" instance=ExtResource("5_bau")]
+position = Vector2(1990, 600)
+
+
+[node name="Inimigos" type="Node2D" parent="."]
+
+[node name="Formiga1" parent="Inimigos" instance=ExtResource("6_formiga")]
+position = Vector2(1200, 790)
+direcao_inicial = -1
+
+[node name="Formiga2" parent="Inimigos" instance=ExtResource("6_formiga")]
+position = Vector2(1260, 680)
+direcao_inicial = 1
+
+[node name="Formiga3" parent="Inimigos" instance=ExtResource("6_formiga")]
+position = Vector2(1000, 430)
+direcao_inicial = -1
+
+[node name="Formiga4" parent="Inimigos" instance=ExtResource("6_formiga")]
+position = Vector2(420, 570)
+direcao_inicial = 1
+
+[node name="Formiga5" parent="Inimigos" instance=ExtResource("6_formiga")]
+position = Vector2(1650, 560)
+direcao_inicial = -1
+
+[node name="Pombos" parent="Inimigos" instance=ExtResource("7_pombos")]
+position = Vector2(1500, 420)
+
+
+[node name="Jogador" parent="." instance=ExtResource("8_jogador")]
+position = Vector2(100, 768)
+
+
+[node name="HUD" parent="." instance=ExtResource("9_hud")]
+
+[node name="MenuPausa" parent="." instance=ExtResource("10_pausa")]

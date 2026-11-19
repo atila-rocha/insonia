@@ -1,0 +1,150 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/batalha.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://drc1wol1kmx6s" path="res://Sprite/Cenário/WhatsApp Image 2026-10-22 at 18.19.34.jpeg" id="2_fundo"]
+[ext_resource type="Texture2D" uid="uid://2uadscbx3rtv" path="res://Sprite/Sprites do Jogo/Sprite Bloco de concreto 1.png.png" id="3_concreto"]
+[ext_resource type="Texture2D" uid="uid://cwfpwjom8dd4t" path="res://Sprite/Sprites do Jogo/Sprite da porta de interações.png.png" id="4_porta"]
+[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/Personagem/jogador.tscn" id="5_jogador"]
+[ext_resource type="PackedScene" path="res://Cenas/Bosses/boss_pombo.tscn" id="6_boss"]
+[ext_resource type="PackedScene" path="res://Cenas/UI_extras/hud.tscn" id="7_hud"]
+[ext_resource type="PackedScene" path="res://Cenas/UI_extras/barra_vida_boss.tscn" id="8_barra"]
+[ext_resource type="PackedScene" path="res://Cenas/UI_extras/menu_pausa.tscn" id="9_pausa"]
+
+[sub_resource type="RectangleShape2D" id="Shape_chao"]
+size = Vector2(1600, 90)
+
+[sub_resource type="RectangleShape2D" id="Shape_parede"]
+size = Vector2(40, 1200)
+
+[sub_resource type="Gradient" id="Gradient_luz"]
+offsets = PackedFloat32Array(0, 0.55, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.55, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="Textura_luz"]
+gradient = SubResource("Gradient_luz")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="BatalhaPombo" type="Node2D" node_paths=PackedStringArray("boss", "barra_vida_boss", "porta")]
+script = ExtResource("1_script")
+boss = NodePath("BossPombo")
+barra_vida_boss = NodePath("HUDBoss/BarraVidaBoss")
+porta = NodePath("Porta")
+
+[node name="Fundo" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.97, 0.97)
+texture = ExtResource("2_fundo")
+
+[node name="LuzAmbiente" type="PointLight2D" parent="."]
+position = Vector2(576, 200)
+color = Color(0.62, 0.66, 0.85, 1)
+energy = 0.55
+texture = SubResource("Textura_luz")
+texture_scale = 9.0
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(576, 605)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+shape = SubResource("Shape_chao")
+
+[node name="Visual" type="Sprite2D" parent="Chao"]
+texture_repeat = 2
+texture = ExtResource("3_concreto")
+region_enabled = true
+region_rect = Rect2(0, 0, 1170, 90)
+
+[node name="ParedeEsquerda" type="StaticBody2D" parent="."]
+position = Vector2(-20, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeEsquerda"]
+shape = SubResource("Shape_parede")
+
+[node name="ParedeDireita" type="StaticBody2D" parent="."]
+position = Vector2(1172, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeDireita"]
+shape = SubResource("Shape_parede")
+
+[node name="Poste1" type="Node2D" parent="."]
+position = Vector2(300, 560)
+
+[node name="Haste" type="Polygon2D" parent="Poste1"]
+color = Color(0.5, 0.52, 0.58, 1)
+polygon = PackedVector2Array(-2, -150, 2, -150, 2, 0, -2, 0)
+
+[node name="Luminaria" type="Polygon2D" parent="Poste1"]
+color = Color(0.96, 0.97, 1, 1)
+polygon = PackedVector2Array(-9, -158, 9, -158, 6, -148, -6, -148)
+
+[node name="Luz" type="PointLight2D" parent="Poste1"]
+position = Vector2(0, -146)
+color = Color(0.92, 0.95, 1, 1)
+energy = 0.9
+texture = SubResource("Textura_luz")
+texture_scale = 1.4
+
+[node name="Poste2" type="Node2D" parent="."]
+position = Vector2(880, 560)
+
+[node name="Haste" type="Polygon2D" parent="Poste2"]
+color = Color(0.5, 0.52, 0.58, 1)
+polygon = PackedVector2Array(-2, -150, 2, -150, 2, 0, -2, 0)
+
+[node name="Luminaria" type="Polygon2D" parent="Poste2"]
+color = Color(0.96, 0.97, 1, 1)
+polygon = PackedVector2Array(-9, -158, 9, -158, 6, -148, -6, -148)
+
+[node name="Luz" type="PointLight2D" parent="Poste2"]
+position = Vector2(0, -146)
+color = Color(0.92, 0.95, 1, 1)
+energy = 0.9
+texture = SubResource("Textura_luz")
+texture_scale = 1.4
+
+[node name="Porta" type="Node2D" parent="."]
+position = Vector2(70, 560)
+
+[node name="Sprite2D" type="Sprite2D" parent="Porta"]
+position = Vector2(0, -32)
+texture = ExtResource("4_porta")
+
+[node name="Brilho" type="PointLight2D" parent="Porta"]
+position = Vector2(0, -32)
+color = Color(1, 0.76, 0.48, 1)
+energy = 0.3
+texture = SubResource("Textura_luz")
+texture_scale = 0.5
+
+[node name="Jogador" parent="." instance=ExtResource("5_jogador")]
+position = Vector2(200, 530)
+
+[node name="BossPombo" parent="." instance=ExtResource("6_boss")]
+position = Vector2(860, 140)
+
+[node name="HUD" parent="." instance=ExtResource("7_hud")]
+
+[node name="HUDBoss" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="Nome" type="Label" parent="HUDBoss"]
+offset_left = 376.0
+offset_top = 8.0
+offset_right = 776.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.94, 0.63, 0.19, 1)
+theme_override_font_sizes/font_size = 16
+text = "A REVOADA"
+horizontal_alignment = 1
+
+[node name="BarraVidaBoss" parent="HUDBoss" instance=ExtResource("8_barra")]
+offset_left = 376.0
+offset_top = 32.0
+offset_right = 776.0
+offset_bottom = 66.0
+
+[node name="MenuPausa" parent="." instance=ExtResource("9_pausa")]

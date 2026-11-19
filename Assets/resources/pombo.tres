@@ -6,4 +6,7 @@
 script = ExtResource("1_dbcu7")
 id = &"pombo"
 nome = "POMBO"
+representa = "Excesso de pensamentos acelerados e ansiedade. Uma revoada que não para de voar."
+comportamento = "Persegue com atraso: vai até onde o Leo estava cerca de um segundo antes, refazendo o caminho dele. Fica mais rápida quando a sanidade está baixa."
+fraqueza = "Para tudo para comer. E não enxerga quem está descansando no banco."
 metadata/_custom_type_script = "uid://cta5kui4vhqkh"

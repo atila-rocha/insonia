@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dayhaamonkgh3"]
+
+[ext_resource type="PackedScene" uid="uid://boinxllbuxcjg" path="res://fase_1.tscn" id="1_1vqui"]
+[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/Personagem/jogador.tscn" id="2_dvqkh"]
+[ext_resource type="PackedScene" uid="uid://dngpo1lti7e1h" path="res://Cenas/pombos.tscn" id="3_ip7bt"]
+
+[node name="TestePerseguicao" type="Node2D" unique_id=226007175]
+
+[node name="Fase_1" parent="." unique_id=1903988114 instance=ExtResource("1_1vqui")]
+
+[node name="Node2D" parent="." unique_id=1561455625 instance=ExtResource("2_dvqkh")]
+position = Vector2(90, 320)
+
+[node name="Pombos" parent="." unique_id=33447192 instance=ExtResource("3_ip7bt")]
+position = Vector2(467, 389)

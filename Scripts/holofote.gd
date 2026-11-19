@@ -27,6 +27,9 @@ extends PointLight2D
 const TAMANHO_TEXTURA := 256
 
 var _ambiente: CanvasModulate
+## Fundos em ParallaxBackground ficam em outra camada (CanvasLayer), onde o
+## CanvasModulate da fase não chega. Cada um ganha o seu próprio escurecimento.
+var _ambientes_fundo: Array[CanvasModulate] = []
 var _sanidade_alvo := 1.0
 var _sanidade_atual := 1.0
 
@@ -45,8 +48,12 @@ func _process(delta: float) -> void:
 	_sanidade_atual = lerpf(_sanidade_atual, _sanidade_alvo, minf(velocidade_transicao * delta, 1.0))
 	var peso := _peso_cinza(_sanidade_atual)
 	color = cor_normal.lerp(cor_sanidade_baixa, peso)
+	var cor_ambiente := ambiente_normal.lerp(ambiente_sanidade_baixa, peso)
 	if _ambiente:
-		_ambiente.color = ambiente_normal.lerp(ambiente_sanidade_baixa, peso)
+		_ambiente.color = cor_ambiente
+	for fundo in _ambientes_fundo:
+		if is_instance_valid(fundo):
+			fundo.color = cor_ambiente
 
 
 # ---------------- Funções públicas (para o resto do grupo usar) ----------------
@@ -99,8 +106,22 @@ func _configurar_ambiente() -> void:
 		_ambiente = CanvasModulate.new()
 		_ambiente.name = "AmbienteEscuro"
 		_ambiente.add_to_group("ambiente_escuro")
-		get_tree().current_scene.add_child.call_deferred(_ambiente)
+		var cena := get_tree().current_scene if get_tree().current_scene else get_tree().root
+		cena.add_child.call_deferred(_ambiente)
 	_ambiente.color = ambiente_normal
+	_escurecer_fundos()
+
+
+func _escurecer_fundos() -> void:
+	var cena := get_tree().current_scene
+	if cena == null:
+		return
+	for fundo in cena.find_children("*", "ParallaxBackground", true, false):
+		var modulador := CanvasModulate.new()
+		modulador.name = "AmbienteEscuroFundo"
+		modulador.color = ambiente_normal
+		fundo.add_child.call_deferred(modulador)
+		_ambientes_fundo.append(modulador)
 
 
 func _peso_cinza(sanidade: float) -> float:

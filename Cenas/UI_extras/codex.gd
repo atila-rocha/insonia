@@ -34,9 +34,10 @@ func _ready() -> void:
 
 func _criar_lista() -> void:
 	for entrada in entradas:
-		# FUTURO: aqui entra a regra de desbloqueio (ainda PENDENTE no GDD).
+		# Desbloqueio: a entrada só aparece depois de vencer a fase
+		# (EstadoJogo.codex_desbloqueado). Antes disso fica "???".
 		var botao := Button.new()
-		botao.text = entrada.nome
+		botao.text = entrada.nome if _desbloqueada(entrada) else "???"
 		botao.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		botao.pressed.connect(_selecionar.bind(entrada, botao))
 		lista.add_child(botao)
@@ -59,7 +60,15 @@ func _marcar_botao(botao: Button) -> void:
 		botao.add_theme_color_override(estado, COR_SELECIONADO)
 
 
+func _desbloqueada(entrada: EntradaCodex) -> bool:
+	return entrada.id in EstadoJogo.codex_desbloqueado
+
+
 func _mostrar_entrada(entrada: EntradaCodex) -> void:
+	if not _desbloqueada(entrada):
+		nome_label.text = "???"
+		texto.text = "Ainda não descoberto.\n\nVença o perseguidor da fase para revelar esta entrada."
+		return
 	nome_label.text = entrada.nome
 	texto.text = (
 		"[color=%s]O QUE REPRESENTA[/color]\n%s\n\n"

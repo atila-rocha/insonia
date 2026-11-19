@@ -3,6 +3,8 @@ extends Control
 @onready var caixa: VBoxContainer = $MarginContainer/VBoxContainer
 @onready var lua: TextureRect = $Moon
 
+const CENA_CODEX := preload("res://Cenas/UI_extras/codex.tscn")
+
 @export var margem_lua: float = 12.0
 var lua_x: float = 0.0
 
@@ -18,6 +20,18 @@ func _ready() -> void:
 	for botao in botoes:
 		botao.focus_entered.connect(_ao_focar.bind(botao))
 		botao.mouse_entered.connect(botao.grab_focus)
+
+	# Ação de cada botão (pelo texto que aparece na tela)
+	for botao in botoes:
+		match botao.text:
+			"JOGAR":
+				botao.pressed.connect(_ao_jogar)
+			"INICIAR NOVO JOGO":
+				botao.pressed.connect(_ao_novo_jogo)
+			"CODEX":
+				botao.pressed.connect(_ao_abrir_codex)
+			"SAIR":
+				botao.pressed.connect(get_tree().quit)
 
 	# Espera 1 frame para o container calcular as posições
 	await get_tree().process_frame
@@ -45,3 +59,18 @@ func _ao_focar(botao: Button) -> void:
 		lua_x,
 		botao.global_position.y + (botao.size.y - lua.size.y) / 2.0
 	)
+
+
+func _ao_jogar() -> void:
+	get_tree().change_scene_to_file(EstadoJogo.cena_fase_atual)
+
+
+func _ao_novo_jogo() -> void:
+	EstadoJogo.novo_jogo()
+	get_tree().change_scene_to_file(EstadoJogo.CENA_FASE_1)
+
+
+func _ao_abrir_codex() -> void:
+	var codex := CENA_CODEX.instantiate()
+	add_child(codex)
+	codex.fechado.connect(func() -> void: botoes[0].grab_focus())
