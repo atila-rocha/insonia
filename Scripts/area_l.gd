@@ -26,8 +26,9 @@ func _process(delta: float) -> void:
 		velocidade_y += gravidade * delta
 		position.y += velocidade_y * delta
 
-	var limites := get_viewport_rect().size
-	if global_position.x < -50.0 or global_position.x > limites.x + 50.0 or global_position.y > limites.y + 200.0:
+	# Área visível do mundo (considera a câmera, para fases com rolagem).
+	var visivel := get_viewport().get_canvas_transform().affine_inverse() * get_viewport_rect()
+	if not visivel.grow(200.0).has_point(global_position):
 		queue_free()
 
 

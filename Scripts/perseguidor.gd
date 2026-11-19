@@ -42,6 +42,15 @@ enum Estado { PATRULHA, PERSEGUICAO, AGRESSIVO, IGNORANDO, COMENDO }
 ## Abaixo desta fração da sanidade ele fica agressivo (0.3 = 30%).
 @export_range(0.0, 1.0) var limiar_agressivo: float = 0.3
 
+@export_group("Visual")
+## Pombos voam por cima de tudo: sem colisão com paredes nem com o jogador.
+## Desmarque para perseguidores que andam pelo chão (gato, gambá...).
+@export var atravessa_paredes: bool = true
+## Cria os "olhos brilhantes" automaticamente se a cena não tiver o nó Olhos.
+@export var criar_olhos: bool = true
+## Posição dos olhos em relação ao centro do perseguidor.
+@export var posicao_olhos: Vector2 = Vector2(10, -10)
+
 @export_group("Depuração")
 ## Mostra no painel Saída cada troca de estado.
 @export var mostrar_estado: bool = true
@@ -67,9 +76,15 @@ var _tempo_comendo := 0.0
 
 
 func _ready() -> void:
+	add_to_group("perseguidor")
 	# Pombos voam: sem gravidade, movimento livre em X e Y.
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	if atravessa_paredes:
+		collision_layer = 0
+		collision_mask = 0
 	_origem = global_position
+	if _olhos == null and criar_olhos:
+		_olhos = _criar_olhos()
 
 
 func _physics_process(delta: float) -> void:
@@ -97,9 +112,15 @@ func _physics_process(delta: float) -> void:
 
 # ---------------- Funções públicas ----------------
 
+## true enquanto estiver perseguindo o Leo (usado pela barra de sanidade).
+func esta_perseguindo() -> bool:
+	return estado == Estado.PERSEGUICAO or estado == Estado.AGRESSIVO
+
+
 ## Chamar quando o Leo soltar comida (tecla F). O perseguidor vai até ela e para para comer.
 func distrair(posicao_comida: Vector2, duracao: float = 4.0) -> void:
-	_comida_pos = posicao_comida
+	# Para um pouco acima da comida, para o corpo não ficar "dentro" do chão.
+	_comida_pos = posicao_comida + Vector2(0, -16)
 	_tempo_comendo = duracao
 	estado = Estado.COMENDO
 
@@ -186,6 +207,11 @@ func _verificar_contato() -> void:
 
 ## Fora da luz: só os olhos. Dentro da luz: sprite do animal (usa o holofote).
 func _atualizar_visual() -> void:
+	if _sprite is AnimatedSprite2D:
+		var anim := "comer" if estado == Estado.COMENDO else "voar"
+		if _sprite.animation != anim and _sprite.sprite_frames and _sprite.sprite_frames.has_animation(anim):
+			_sprite.play(anim)
+
 	if _sprite is AnimatedSprite2D and absf(velocity.x) > 1.0:
 		var indo_para_esquerda := velocity.x < 0.0
 		_sprite.flip_h = indo_para_esquerda if sprite_olha_para_direita else not indo_para_esquerda
@@ -197,6 +223,36 @@ func _atualizar_visual() -> void:
 		_sprite.visible = iluminado
 	if _olhos:
 		_olhos.visible = not iluminado
+		if _sprite is AnimatedSprite2D:
+			# Os olhos acompanham o lado para onde o perseguidor olha.
+			var olhando_direita: bool = _sprite.flip_h != sprite_olha_para_direita
+			_olhos.position.x = absf(posicao_olhos.x) * (1.0 if olhando_direita else -1.0)
+
+
+## Olhos brilhantes no escuro (GDD): um ponto laranja que ignora a escuridão
+## (Light Mode = Unshaded), visível só fora do holofote.
+func _criar_olhos() -> Node2D:
+	var imagem := Image.create(5, 5, false, Image.FORMAT_RGBA8)
+	for x in 5:
+		for y in 5:
+			var d := absi(x - 2) + absi(y - 2)
+			if d == 0:
+				imagem.set_pixel(x, y, Color("fff4be"))
+			elif d == 1:
+				imagem.set_pixel(x, y, Color(1.0, 0.6, 0.25, 0.9))
+			elif d == 2:
+				imagem.set_pixel(x, y, Color(1.0, 0.35, 0.15, 0.35))
+	var olhos := Sprite2D.new()
+	olhos.name = "Olhos"
+	olhos.texture = ImageTexture.create_from_image(imagem)
+	olhos.scale = Vector2(2, 2)
+	olhos.position = posicao_olhos
+	var material_olhos := CanvasItemMaterial.new()
+	material_olhos.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED
+	olhos.material = material_olhos
+	olhos.z_index = 5
+	add_child(olhos)
+	return olhos
 
 
 func _sanidade_baixa() -> bool:

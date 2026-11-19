@@ -6,4 +6,6 @@
 script = ExtResource("1_5q82l")
 id = &"formiga"
 nome = "FORMIGA"
+comportamento = "Patrulha o chão de um lado para o outro e muda de direção ao bater em obstáculos. Encostar nela de lado tira 10% da sanidade."
+fraqueza = "Um pulo em cima dela."
 metadata/_custom_type_script = "uid://cta5kui4vhqkh"

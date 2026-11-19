@@ -99,10 +99,13 @@ radius = 28.0
 
 [node name="Pombos" type="CharacterBody2D" unique_id=33447192]
 script = ExtResource("1_6qkho")
+sprite_olha_para_direita = true
+posicao_olhos = Vector2(13, -11)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2094051862]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_v56fw")
-animation = &"comer"
+animation = &"voar"
 autoplay = "voar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1819824323]
