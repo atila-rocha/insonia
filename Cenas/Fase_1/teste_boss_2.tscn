@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bfr380abi5qj7"]
+
+[ext_resource type="PackedScene" uid="uid://dsp6u1l3u0u7k" path="res://Cenas/Personagem/jogador.tscn" id="1_jogador"]
+[ext_resource type="PackedScene" uid="uid://1ok0grdnxj4e" path="res://Cenas/Bosses/boss_2.tscn" id="2_boss"]
+[ext_resource type="Script" uid="uid://btbk8rn6bvxwp" path="res://Scripts/teste_boss_2.gd" id="3_script"]
+[ext_resource type="PackedScene" path="res://Cenas/UI_extras/barra_vida_boss.tscn" id="4_barra"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chao"]
+size = Vector2(2000, 100)
+
+[node name="TesteBoss2" type="Node2D" unique_id=369471638]
+script = ExtResource("3_script")
+
+[node name="Chao" type="StaticBody2D" parent="." unique_id=323883476]
+position = Vector2(628, 650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao" unique_id=1264931356]
+shape = SubResource("RectangleShape2D_chao")
+
+[node name="Visual" type="Polygon2D" parent="Chao" unique_id=2020671574]
+color = Color(0.4, 0.3, 0.2, 1)
+polygon = PackedVector2Array(-1000, -50, 1000, -50, 1000, 50, -1000, 50)
+
+[node name="Jogador" parent="." unique_id=712109927 instance=ExtResource("1_jogador")]
+position = Vector2(150, 200)
+
+[node name="Boss2" parent="." unique_id=1026336644 instance=ExtResource("2_boss")]
+position = Vector2(700, 180)
+limite_esquerdo = 80.0
+limite_direito = 1070.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1372542837]
+
+[node name="BarraVidaBoss" parent="HUD" unique_id=1896816379 instance=ExtResource("4_barra")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 316.0
+offset_top = 24.0
+offset_right = 836.0
+offset_bottom = 70.0

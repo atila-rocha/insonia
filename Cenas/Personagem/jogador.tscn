@@ -3,17 +3,20 @@
 [ext_resource type="Script" uid="uid://ctmx7uu3wvijt" path="res://Scripts/jogador.gd" id="1_k5ljr"]
 [ext_resource type="Texture2D" uid="uid://ctxjwbm4m7qk6" path="res://Sprite/Sprite Personagem/idle-respirando.png" id="2_k5ljr"]
 [ext_resource type="PackedScene" path="res://Cenas/UI_extras/barra_vida_inimigo.tscn" id="3_barra"]
-[ext_resource type="Texture2D" uid="uid://c0kd01bk5lxyq" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_02.png" id="3_mqfuh"]
-[ext_resource type="Texture2D" uid="uid://dbs55m5cd3jqg" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_03.png" id="4_6chry"]
-[ext_resource type="Texture2D" uid="uid://diag7hh621fmb" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_04.png" id="5_nm0xq"]
-[ext_resource type="Texture2D" uid="uid://bywunrphdl2hy" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_05.png" id="6_0fwd1"]
-[ext_resource type="Texture2D" uid="uid://cpd4iwyksxs3y" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_06.png" id="7_l11ws"]
-[ext_resource type="Texture2D" uid="uid://bjxj7o44vgunj" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_07.png" id="8_6yvxr"]
-[ext_resource type="Texture2D" uid="uid://buyq0l8h164h0" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_08.png" id="9_6fp8p"]
-[ext_resource type="Texture2D" uid="uid://d4es2cpwywem6" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_09.png" id="10_n3av4"]
-[ext_resource type="Texture2D" uid="uid://rgcokpmgg4i7" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_10.png" id="11_1dhfh"]
-[ext_resource type="Texture2D" uid="uid://bmwr5e0m503ej" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_11.png" id="12_27j31"]
-[ext_resource type="Texture2D" uid="uid://coqpqgj5lhj3n" path="res://Sprite/Sprite Personagem/Sprite pulo/pular_12.png" id="13_ram8e"]
+[ext_resource type="Texture2D" uid="uid://b66wuiuh1chsb" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_01.png" id="20_pulo01"]
+[ext_resource type="Texture2D" uid="uid://ft0fd50d31ki" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_02.png" id="21_pulo02"]
+[ext_resource type="Texture2D" uid="uid://bjmut88goskbx" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_03.png" id="22_pulo03"]
+[ext_resource type="Texture2D" uid="uid://dwag8f8gqel4u" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_04.png" id="23_pulo04"]
+[ext_resource type="Texture2D" uid="uid://b64wdpmv1gxjj" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_05.png" id="24_pulo05"]
+[ext_resource type="Texture2D" uid="uid://bpvxpafivfvqh" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_06.png" id="25_pulo06"]
+[ext_resource type="Texture2D" uid="uid://6hgw1dkgsecl" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_07.png" id="26_pulo07"]
+[ext_resource type="Texture2D" uid="uid://bit5cw7lsmi2c" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_08.png" id="27_pulo08"]
+[ext_resource type="Texture2D" uid="uid://ceqhynt27u4dl" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_09.png" id="28_pulo09"]
+[ext_resource type="Texture2D" uid="uid://4oqs3n8g20sm" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_10.png" id="29_pulo10"]
+[ext_resource type="Texture2D" uid="uid://s3fvjo01gxrt" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_11.png" id="30_pulo11"]
+[ext_resource type="Texture2D" uid="uid://c17rkf35478ty" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_12.png" id="31_pulo12"]
+[ext_resource type="Texture2D" uid="uid://7wxwdu60s6gs" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_13.png" id="32_pulo13"]
+[ext_resource type="Texture2D" uid="uid://bfqx8enjasq50" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_14.png" id="33_pulo14"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1gus"]
 atlas = ExtResource("2_k5ljr")
@@ -108,41 +111,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_mqfuh")
+"texture": ExtResource("20_pulo01")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_6chry")
+"texture": ExtResource("21_pulo02")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_nm0xq")
+"texture": ExtResource("22_pulo03")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_0fwd1")
+"texture": ExtResource("23_pulo04")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_l11ws")
+"texture": ExtResource("24_pulo05")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_6yvxr")
+"texture": ExtResource("25_pulo06")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_6fp8p")
+"texture": ExtResource("26_pulo07")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_n3av4")
+"texture": ExtResource("27_pulo08")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_1dhfh")
+"texture": ExtResource("28_pulo09")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_27j31")
+"texture": ExtResource("29_pulo10")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_ram8e")
+"texture": ExtResource("30_pulo11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_pulo12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_pulo13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_pulo14")
 }],
 "loop": 1,
 "name": &"jump",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [],
 "loop": 1,
@@ -151,7 +163,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bekt7"]
-size = Vector2(41, 46)
+size = Vector2(53, 59)
 
 [node name="Node2D" type="Node2D" unique_id=1561455625]
 
@@ -161,13 +173,13 @@ collision_mask = 5
 script = ExtResource("1_k5ljr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=91408178]
-position = Vector2(182.59732, 99.77922)
-scale = Vector2(0.15048333, 0.16399464)
+position = Vector2(190.0973, 93.27922)
+scale = Vector2(0.21929058, 0.20882222)
 sprite_frames = SubResource("SpriteFrames_vlew8")
 animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1795723956]
-position = Vector2(183.5, 100)
+position = Vector2(189.5, 93.5)
 shape = SubResource("RectangleShape2D_bekt7")
 
 [node name="BarraVida" parent="CharacterBody2D" unique_id=430194574 instance=ExtResource("3_barra")]

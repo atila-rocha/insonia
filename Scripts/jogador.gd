@@ -17,6 +17,7 @@ const CAMADA_INIMIGOS = 4
 const DURACAO_INVENCIVEL = 1.0
 
 @export var cena_lapis: PackedScene = preload("res://Cenas/Habilidades/lapis.tscn")
+@export var velocidade_lancamento_vertical: float = 650.0
 
 var vida: int = VIDA_MAXIMA
 var direcao_olhando: float = 1.0
@@ -78,15 +79,22 @@ func _atualizar_animacao() -> void:
 
 
 func _tocar_animacao(nome: String) -> void:
-	if _sprite.animation == nome:
+	var animacao_alvo := nome
+
+	# "run" ainda não tem frames importados. Sem isso, ao pousar andando o
+	# pedido de trocar pra "run" falhava em silêncio e o sprite ficava
+	# travado no último frame do pulo (parecendo agachado/pulando parado).
+	# Cai pra "idle" nesse caso, em vez de simplesmente não trocar nada.
+	if _sprite.sprite_frames and _sprite.sprite_frames.get_frame_count(animacao_alvo) == 0:
+		animacao_alvo = "idle"
+
+	if _sprite.animation == animacao_alvo:
 		return
 
-	# Algumas animações (ex.: "run"/"jump") ainda não têm frames importados —
-	# evita travar/sumir o sprite tentando tocar uma animação vazia.
-	if _sprite.sprite_frames and _sprite.sprite_frames.get_frame_count(nome) == 0:
+	if _sprite.sprite_frames and _sprite.sprite_frames.get_frame_count(animacao_alvo) == 0:
 		return
 
-	_sprite.play(nome)
+	_sprite.play(animacao_alvo)
 
 
 func _verificar_pulo_em_inimigo() -> void:
@@ -123,13 +131,22 @@ func arremessar() -> void:
 	# Sai do centro do corpo do jogador (centro do sprite), não da origem
 	# do CharacterBody2D, que fica deslocada acima/à esquerda do corpo.
 	lapis.global_position = _sprite.global_position + Vector2(direcao_olhando * 15.0, 0.0)
-	lapis.direcao = direcao_olhando
 
-	# Se o jogador estiver no ar, o lápis segue uma trajetória de
-	# lançamento horizontal (velocidade horizontal constante + gravidade
-	# puxando para baixo). No chão, o lápis segue em linha reta.
-	if not is_on_floor():
+	if Input.is_action_pressed("cima"):
+		# Arremesso vertical: sobe reto pra cima com velocidade própria e,
+		# depois de um tempo, a gravidade vence e ele cai de volta.
+		lapis.direcao = 0.0
 		lapis.usar_gravidade = true
+		lapis.velocidade_y = -velocidade_lancamento_vertical
+		lapis.rotation = -PI / 2.0
+	else:
+		lapis.direcao = direcao_olhando
+
+		# Se o jogador estiver no ar, o lápis segue uma trajetória de
+		# lançamento horizontal (velocidade horizontal constante + gravidade
+		# puxando para baixo). No chão, o lápis segue em linha reta.
+		if not is_on_floor():
+			lapis.usar_gravidade = true
 
 
 func receber_dano(dano: int) -> void:

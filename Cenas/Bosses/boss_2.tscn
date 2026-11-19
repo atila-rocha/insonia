@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://1ok0grdnxj4e"]
+
+[ext_resource type="Script" uid="uid://bfg138ooft6ww" path="res://Scripts/boss_2.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cuboduoocay1h" path="res://Sprite/S]prite pombo/Sprite_1/voar_01.png" id="2_voar01"]
+[ext_resource type="Texture2D" uid="uid://0qxcgr47pcei" path="res://Sprite/S]prite pombo/Sprite_1/voar_02.png" id="3_voar02"]
+[ext_resource type="Texture2D" uid="uid://b6mdrjs2ysaot" path="res://Sprite/S]prite pombo/Sprite_1/voar_03.png" id="4_voar03"]
+[ext_resource type="Texture2D" uid="uid://cbv6aw1eudlg2" path="res://Sprite/S]prite pombo/Sprite_1/voar_04.png" id="5_voar04"]
+[ext_resource type="Texture2D" uid="uid://ocqndoymner1" path="res://Sprite/S]prite pombo/Sprite_1/voar_05.png" id="6_voar05"]
+[ext_resource type="Texture2D" uid="uid://dg8ei8155286a" path="res://Sprite/S]prite pombo/Sprite_1/voar_06.png" id="7_voar06"]
+[ext_resource type="Texture2D" uid="uid://dgajvn4w43vqg" path="res://Sprite/S]prite pombo/Sprite_1/voar_07.png" id="8_voar07"]
+[ext_resource type="Texture2D" uid="uid://cq1jxnwjtyp02" path="res://Sprite/S]prite pombo/Sprite_1/voar_08.png" id="9_voar08"]
+[ext_resource type="Texture2D" uid="uid://j8baxs5ua05x" path="res://Sprite/S]prite pombo/Sprite_1/voar_09.png" id="10_voar09"]
+[ext_resource type="Texture2D" uid="uid://d2g8mexsy573l" path="res://Sprite/S]prite pombo/Sprite_1/voar_10.png" id="11_voar10"]
+[ext_resource type="Texture2D" uid="uid://db7laq23vle38" path="res://Sprite/S]prite pombo/Sprite_1/voar_11.png" id="12_voar11"]
+[ext_resource type="Texture2D" uid="uid://b54t7ya126ynx" path="res://Sprite/S]prite pombo/Sprite_1/voar_12.png" id="13_voar12"]
+[ext_resource type="Texture2D" uid="uid://dsjtb2bbuobax" path="res://Sprite/S]prite pombo/Sprite_1/voar_13.png" id="14_voar13"]
+[ext_resource type="Texture2D" uid="uid://346moe1b7qoy" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_01.png" id="15_merg01"]
+[ext_resource type="Texture2D" uid="uid://c8hvhkvk3yd0s" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_02.png" id="16_merg02"]
+[ext_resource type="Texture2D" uid="uid://c3s2aams2px1b" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_03.png" id="17_merg03"]
+[ext_resource type="Texture2D" uid="uid://ddd8gagjr2yhv" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_04.png" id="18_merg04"]
+[ext_resource type="Texture2D" uid="uid://qtjao41v5ws1" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_05.png" id="19_merg05"]
+[ext_resource type="Texture2D" uid="uid://bw5lq2xfia501" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_06.png" id="20_merg06"]
+[ext_resource type="Texture2D" uid="uid://blhfwjwdps5un" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_07.png" id="21_merg07"]
+[ext_resource type="Texture2D" uid="uid://cjqcntokk5q2l" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_08.png" id="22_merg08"]
+[ext_resource type="Texture2D" uid="uid://c1yb46xm50grg" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_09.png" id="23_merg09"]
+[ext_resource type="Texture2D" uid="uid://c08yj88x7ffyk" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_10.png" id="24_merg10"]
+[ext_resource type="Texture2D" uid="uid://dvlpq4rps26qy" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_11.png" id="25_merg11"]
+[ext_resource type="Texture2D" uid="uid://bvoshdumspgjk" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_12.png" id="26_merg12"]
+[ext_resource type="Texture2D" uid="uid://b1m77cebn5yct" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_13.png" id="27_merg13"]
+[ext_resource type="Texture2D" uid="uid://cp1nqe2yku2l3" path="res://Sprite/S]prite pombo/Sprite_2/ataque_mergulho_14.png" id="28_merg14"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pombo_corpo"]
+size = Vector2(140, 110)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pombo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_merg01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_merg02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_merg03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_merg04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_merg05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_merg06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_merg07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_merg08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_merg09")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_merg10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_merg11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_merg12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_merg13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_merg14")
+}],
+"loop": 1,
+"name": &"mergulho",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_voar01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_voar02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_voar03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_voar04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_voar05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_voar06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_voar07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_voar08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_voar09")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_voar10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_voar11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_voar12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_voar13")
+}],
+"loop": 1,
+"name": &"voando",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pombo_dano"]
+size = Vector2(140, 70)
+
+[node name="boss_2" type="AnimatableBody2D" unique_id=78532491]
+collision_layer = 4
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1881731455]
+shape = SubResource("RectangleShape2D_pombo_corpo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1658369483]
+position = Vector2(-16.499989, -22.499996)
+scale = Vector2(0.85526323, 0.65234375)
+sprite_frames = SubResource("SpriteFrames_pombo")
+animation = &"voando"
+
+[node name="AreaDano" type="Area2D" parent="." unique_id=2004931428]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDano" unique_id=1687735703]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_pombo_dano")
