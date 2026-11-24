@@ -2,25 +2,30 @@ extends AnimatableBody2D
 
 signal vida_alterada(atual: int, maxima: int)
 
-enum Estado { VOANDO, MERGULHANDO, PAIRANDO, SUBINDO }
+enum Estado { VOANDO, PREPARANDO, MERGULHANDO, PAIRANDO, SUBINDO }
 
 @export var vida_maxima: int = 190
 
 @export var velocidade_patrulha: float = 120.0
-@export var velocidade_mergulho: float = 650.0
+@export var velocidade_mergulho: float = 420.0
 @export var velocidade_subida: float = 260.0
+
+## Quanto tempo o pombo fica "travado no ar" avisando o ataque antes de
+## realmente mergulhar — a janela que o jogador tem pra perceber e fugir.
+@export var duracao_preparacao: float = 0.5
 
 ## Quanto tempo (em segundos) à frente o pombo "antecipa" o movimento do
 ## jogador ao mirar o mergulho — sem isso ele sempre mira exatamente onde
 ## o jogador estava, ficando sempre um passo atrás de quem está em movimento.
-@export var antecipacao_mira: float = 0.3
+## Baixo de propósito: o jogador ainda consegue escapar se sair do lugar.
+@export var antecipacao_mira: float = 0.15
 
 ## Limites de patrulha em coordenadas globais. Se ficarem em (0, 0)
 ## o boss usa automaticamente as bordas da tela.
 @export var limite_esquerdo: float = 0.0
 @export var limite_direito: float = 0.0
 
-@export var dano_mergulho: int = 29
+@export var dano_mergulho: int = 20
 
 ## Altura (em pixels, acima do centro do jogador) em que o pombo para ao
 ## mergulhar. Pequena de propósito — o pombo tem que realmente alcançar o
@@ -80,15 +85,15 @@ func _physics_process(delta: float) -> void:
 	match estado:
 		Estado.VOANDO:
 			_patrulhar(delta)
+		Estado.PREPARANDO:
+			pass  # trava no lugar avisando o ataque, só esperando o timer
 		Estado.MERGULHANDO:
 			_tempo_mergulho += delta
 
-			# Persegue a posição do jogador a cada frame, mirando um pouco à
-			# frente (com base na velocidade atual dele) — senão o pombo
-			# sempre mira onde o jogador JÁ ESTEVE e nunca alcança de verdade.
-			if is_instance_valid(_jogador_alvo):
-				_alvo_mergulho = _calcular_alvo_mergulho()
-
+			# O alvo foi travado quando o mergulho começou (fim do aviso) e
+			# NÃO é mais atualizado aqui — o pombo voa em linha reta até esse
+			# ponto fixo. Se o jogador sair do lugar durante o mergulho, o
+			# ataque erra de verdade, em vez de curvar atrás dele.
 			_mover_em_direcao(_alvo_mergulho, velocidade_mergulho, delta)
 
 			if global_position.distance_to(_alvo_mergulho) <= DISTANCIA_MINIMA_ALVO or _tempo_mergulho >= duracao_maxima_mergulho:
@@ -149,10 +154,21 @@ func _iniciar_mergulho() -> void:
 		_agendar_proximo_mergulho()
 		return
 
+	# Aviso antes do mergulho: trava no ar, já com a animação de ataque,
+	# mas ainda sem se mover — dá tempo do jogador perceber e sair do lugar
+	# antes do bote de verdade começar.
+	estado = Estado.PREPARANDO
+	_sprite.play("mergulho")
+	get_tree().create_timer(duracao_preparacao).timeout.connect(_comecar_mergulho_de_verdade)
+
+
+func _comecar_mergulho_de_verdade() -> void:
+	if estado != Estado.PREPARANDO:
+		return  # o boss pode ter morrido ou sido interrompido nesse meio tempo
+
 	estado = Estado.MERGULHANDO
 	_tempo_mergulho = 0.0
 	_alvo_mergulho = _calcular_alvo_mergulho()
-	_sprite.play("mergulho")
 
 	# Desliga o corpo sólido durante a descida — senão ele esbarra no
 	# jogador no meio do caminho (vira uma "parede") e nunca chega no alvo.
@@ -161,11 +177,19 @@ func _iniciar_mergulho() -> void:
 
 
 func _calcular_alvo_mergulho() -> Vector2:
+	# IMPORTANTE: não usar _jogador_alvo.global_position direto — a origem
+	# do CharacterBody2D do jogador fica bem deslocada do corpo visível dele
+	# (o sprite/colisão têm um offset local grande). Mirar na origem fazia
+	# o pombo convergir pra um ponto vazio, bem longe do jogador de verdade.
+	var posicao_real_jogador: Vector2 = _jogador_alvo.global_position
+	if _jogador_alvo.has_node("AnimatedSprite2D"):
+		posicao_real_jogador = _jogador_alvo.get_node("AnimatedSprite2D").global_position
+
 	# Mira na posição do jogador MAIS um pedaço do caminho que a velocidade
 	# atual dele percorreria em "antecipacao_mira" segundos — assim o pombo
 	# mira um pouco à frente de para onde o jogador está indo, em vez de
 	# mirar sempre exatamente onde ele estava no instante da leitura.
-	var previsao: Vector2 = _jogador_alvo.global_position
+	var previsao: Vector2 = posicao_real_jogador
 	if "velocity" in _jogador_alvo:
 		previsao += _jogador_alvo.velocity * antecipacao_mira
 

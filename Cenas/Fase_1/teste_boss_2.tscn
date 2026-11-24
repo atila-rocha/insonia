@@ -29,6 +29,10 @@ position = Vector2(700, 180)
 limite_esquerdo = 80.0
 limite_direito = 1070.0
 
+[node name="CameraArena" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+zoom = Vector2(1, 1)
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1372542837]
 
 [node name="BarraVidaBoss" parent="HUD" unique_id=1896816379 instance=ExtResource("4_barra")]

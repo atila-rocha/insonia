@@ -2,7 +2,21 @@
 
 [ext_resource type="Script" uid="uid://ctmx7uu3wvijt" path="res://Scripts/jogador.gd" id="1_k5ljr"]
 [ext_resource type="Texture2D" uid="uid://ctxjwbm4m7qk6" path="res://Sprite/Sprite Personagem/idle-respirando.png" id="2_k5ljr"]
+[ext_resource type="Texture2D" uid="uid://ss5f0v5tqen6" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_01.png" id="3_2glrx"]
 [ext_resource type="PackedScene" uid="uid://c2wyyjvj6x05x" path="res://Cenas/holofote.tscn" id="3_j1gus"]
+[ext_resource type="Texture2D" uid="uid://mvld027hxrcn" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_02.png" id="4_kijjt"]
+[ext_resource type="Texture2D" uid="uid://dblcwkdunk06g" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_03.png" id="5_gm5cy"]
+[ext_resource type="Texture2D" uid="uid://b2wxk60tqp6fb" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_04.png" id="6_knjq3"]
+[ext_resource type="Texture2D" uid="uid://bh0jh7kk4g0dg" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_05.png" id="7_2ryic"]
+[ext_resource type="Texture2D" uid="uid://iyr3senwd2b0" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_06.png" id="8_4i8ec"]
+[ext_resource type="Texture2D" uid="uid://b3m4w5kibyf1e" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_07.png" id="9_6vabd"]
+[ext_resource type="Texture2D" uid="uid://cii3pp31oimmc" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_08.png" id="10_ylt1g"]
+[ext_resource type="Texture2D" uid="uid://84q6ax1rfqts" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_09.png" id="11_lk5rt"]
+[ext_resource type="Texture2D" uid="uid://7nsrumik6nq7" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_10.png" id="12_2mlgh"]
+[ext_resource type="Texture2D" uid="uid://lrlbnhv6ul1c" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_11.png" id="13_701m8"]
+[ext_resource type="Texture2D" uid="uid://bg2jvjl1xin7s" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_12.png" id="14_kymwd"]
+[ext_resource type="Texture2D" uid="uid://ebdd3tewjmek" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_13.png" id="15_3245u"]
+[ext_resource type="Texture2D" uid="uid://b8618dvw2o22h" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_14.png" id="16_cq8iq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1gus"]
 atlas = ExtResource("2_k5ljr")
@@ -66,24 +80,6 @@ region = Rect2(438, 0, 146, 252)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hi5e"]
 region = Rect2(584, 0, 146, 252)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2glrx"]
-region = Rect2(0, 0, 361, 725)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kijjt"]
-region = Rect2(361, 0, 361, 725)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gm5cy"]
-region = Rect2(722, 0, 361, 725)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_knjq3"]
-region = Rect2(1083, 0, 361, 725)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ryic"]
-region = Rect2(1444, 0, 361, 725)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4i8ec"]
-region = Rect2(1805, 0, 361, 725)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vlew8"]
 animations = [{
@@ -150,22 +146,46 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2glrx")
+"texture": ExtResource("3_2glrx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kijjt")
+"texture": ExtResource("4_kijjt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gm5cy")
+"texture": ExtResource("5_gm5cy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_knjq3")
+"texture": ExtResource("6_knjq3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ryic")
+"texture": ExtResource("7_2ryic")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4i8ec")
+"texture": ExtResource("8_4i8ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6vabd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ylt1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lk5rt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2mlgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_701m8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_kymwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_3245u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_cq8iq")
 }],
 "loop": 1,
 "name": &"run",
@@ -175,7 +195,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bekt7"]
 size = Vector2(11, 39)
 
-[node name="Node2D" type="Node2D" unique_id=1561455625]
+[node name="Node2D2" type="Node2D" unique_id=1561455625]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=10647781]
 script = ExtResource("1_k5ljr")
@@ -184,8 +204,7 @@ script = ExtResource("1_k5ljr")
 position = Vector2(172, 106)
 scale = Vector2(0.06648199, 0.12109272)
 sprite_frames = SubResource("SpriteFrames_vlew8")
-animation = &"idle"
-frame_progress = 0.3576459
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1795723956]
 position = Vector2(168.5, 105.5)
@@ -193,4 +212,3 @@ shape = SubResource("RectangleShape2D_bekt7")
 
 [node name="Holofote" parent="CharacterBody2D" unique_id=1793825507 instance=ExtResource("3_j1gus")]
 position = Vector2(172, 106)
-ambiente_normal = Color(0.23529412, 0.26666668, 0.4, 1)

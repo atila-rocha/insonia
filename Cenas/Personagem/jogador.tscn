@@ -17,6 +17,20 @@
 [ext_resource type="Texture2D" uid="uid://c17rkf35478ty" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_12.png" id="31_pulo12"]
 [ext_resource type="Texture2D" uid="uid://7wxwdu60s6gs" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_13.png" id="32_pulo13"]
 [ext_resource type="Texture2D" uid="uid://bfqx8enjasq50" path="res://Sprite/Sprite Personagem/Sprite pulo/pulo_14.png" id="33_pulo14"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_01.png" id="40_corrida01"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_02.png" id="41_corrida02"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_03.png" id="42_corrida03"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_04.png" id="43_corrida04"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_05.png" id="44_corrida05"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_06.png" id="45_corrida06"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_07.png" id="46_corrida07"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_08.png" id="47_corrida08"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_09.png" id="48_corrida09"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_10.png" id="49_corrida10"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_11.png" id="50_corrida11"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_12.png" id="51_corrida12"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_13.png" id="52_corrida13"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_14.png" id="53_corrida14"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1gus"]
 atlas = ExtResource("2_k5ljr")
@@ -156,10 +170,52 @@ animations = [{
 "name": &"jump",
 "speed": 10.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_corrida01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_corrida02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_corrida03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_corrida04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_corrida05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_corrida06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_corrida07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_corrida08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_corrida09")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_corrida10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_corrida11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_corrida12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_corrida13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_corrida14")
+}],
 "loop": 1,
 "name": &"run",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bekt7"]
@@ -186,6 +242,11 @@ shape = SubResource("RectangleShape2D_bekt7")
 layout_mode = 3
 anchors_preset = 0
 offset_left = 143.0
-offset_top = 70.0
+offset_top = 50.0
 offset_right = 213.0
-offset_bottom = 80.0
+offset_bottom = 60.0
+cor_vida = Color(1, 1, 1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+current = true
+zoom = Vector2(1.8, 1.8)
