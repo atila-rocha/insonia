@@ -1,0 +1,108 @@
+[gd_scene load_steps=20 format=3]
+
+[ext_resource type="Script" path="res://Scripts/boss_4.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_01.png" id="2_run01"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_02.png" id="3_run02"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_03.png" id="4_run03"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_04.png" id="5_run04"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_05.png" id="6_run05"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_06.png" id="7_run06"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_07.png" id="8_run07"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/run/gato_run_08.png" id="9_run08"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_01.png" id="10_atk01"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_02.png" id="11_atk02"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_03.png" id="12_atk03"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_04.png" id="13_atk04"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_05.png" id="14_atk05"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_06.png" id="15_atk06"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_07.png" id="16_atk07"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite gato/attack/gato_attack_08.png" id="17_atk08"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gato_corpo"]
+size = Vector2(170, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gato_dano"]
+size = Vector2(170, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gato"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_run01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_run02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_run03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_run04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_run05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_run06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_run07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_run08")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_atk01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_atk02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_atk03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_atk04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_atk05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_atk06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_atk07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_atk08")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 12.0
+}]
+
+[node name="boss_4" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 1
+sync_to_physics = true
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gato_corpo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -44)
+sprite_frames = SubResource("SpriteFrames_gato")
+animation = &"run"
+
+[node name="AreaDano" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDano"]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_gato_dano")

@@ -31,6 +31,14 @@
 [ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_12.png" id="51_corrida12"]
 [ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_13.png" id="52_corrida13"]
 [ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite corrida/corrida_14.png" id="53_corrida14"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_01.png" id="60_arremesso01"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_02.png" id="61_arremesso02"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_03.png" id="62_arremesso03"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_04.png" id="63_arremesso04"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_05.png" id="64_arremesso05"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_06.png" id="65_arremesso06"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_07.png" id="66_arremesso07"]
+[ext_resource type="Texture2D" path="res://Sprite/Sprite Personagem/Sprite ataque vertical/arremesso_08.png" id="67_arremesso08"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1gus"]
 atlas = ExtResource("2_k5ljr")
@@ -215,6 +223,35 @@ animations = [{
 }],
 "loop": 1,
 "name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("60_arremesso01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_arremesso02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_arremesso03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_arremesso04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_arremesso05")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_arremesso06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_arremesso07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_arremesso08")
+}],
+"loop": 0,
+"name": &"arremesso_vertical",
 "speed": 12.0
 }]
 

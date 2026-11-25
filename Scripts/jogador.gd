@@ -19,12 +19,28 @@ const DURACAO_INVENCIVEL = 1.0
 @export var cena_lapis: PackedScene = preload("res://Cenas/Habilidades/lapis.tscn")
 @export var velocidade_lancamento_vertical: float = 650.0
 
+## Deslocamento (local, em pixels) do centro do sprite até a mão levantada
+## na animação "arremesso_vertical" — é de onde o lápis sai nesse arremesso.
+## O X é espelhado conforme o lado que o jogador está olhando.
+@export var offset_mao_vertical: Vector2 = Vector2(10.0, -45.0)
+
+## O sprite de "arremesso_vertical" vem de um canvas bem mais alto (466px)
+## que os outros (idle/pulo/corrida, ~214-304px). Como o AnimatedSprite2D
+## usa uma escala só para todas as animações, sem isso o personagem ficava
+## enorme ao jogar pra cima. Essa escala é aplicada só durante essa animação.
+@export var escala_arremesso_vertical: Vector2 = Vector2(0.19, 0.14)
+
 var vida: int = VIDA_MAXIMA
 var direcao_olhando: float = 1.0
 var ultimo_arremesso_tempo: float = -COOLDOWN_ARREMESSO
 var invencivel: bool = false
 var _camada_colisao_original: int
 var _mascara_colisao_original: int
+
+# Enquanto uma animação de ação (ex.: o arremesso vertical) está tocando,
+# a troca automática de idle/run/jump fica pausada até ela terminar.
+var _acao_em_andamento: bool = false
+var _escala_normal: Vector2
 
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -33,6 +49,7 @@ func _ready() -> void:
 	add_to_group("jogador")
 	_camada_colisao_original = collision_layer
 	_mascara_colisao_original = collision_mask
+	_escala_normal = _sprite.scale
 
 	if has_node("BarraVida"):
 		$BarraVida.definir_vida_maxima(VIDA_MAXIMA)
@@ -68,6 +85,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _atualizar_animacao() -> void:
+	if _acao_em_andamento:
+		return  # não interrompe a animação de ação (ex.: arremesso) em andamento
+
 	_sprite.flip_h = direcao_olhando < 0.0
 
 	if not is_on_floor():
@@ -95,6 +115,26 @@ func _tocar_animacao(nome: String) -> void:
 		return
 
 	_sprite.play(animacao_alvo)
+
+
+# Toca uma animação de ação (que não deve ser interrompida pelo idle/run/jump
+# até terminar sozinha) — usada no arremesso vertical.
+func _tocar_animacao_acao(nome: String) -> void:
+	if _sprite.sprite_frames == null or _sprite.sprite_frames.get_frame_count(nome) == 0:
+		return
+
+	_acao_em_andamento = true
+
+	if nome == "arremesso_vertical":
+		_sprite.scale = escala_arremesso_vertical
+
+	_sprite.play(nome)
+	_sprite.animation_finished.connect(_on_animacao_acao_concluida, CONNECT_ONE_SHOT)
+
+
+func _on_animacao_acao_concluida() -> void:
+	_acao_em_andamento = false
+	_sprite.scale = _escala_normal
 
 
 func _verificar_pulo_em_inimigo() -> void:
@@ -128,18 +168,26 @@ func arremessar() -> void:
 
 	var lapis = cena_lapis.instantiate()
 	get_tree().current_scene.add_child(lapis)
-	# Sai do centro do corpo do jogador (centro do sprite), não da origem
-	# do CharacterBody2D, que fica deslocada acima/à esquerda do corpo.
-	lapis.global_position = _sprite.global_position + Vector2(direcao_olhando * 15.0, 0.0)
 
 	if Input.is_action_pressed("cima"):
-		# Arremesso vertical: sobe reto pra cima com velocidade própria e,
-		# depois de um tempo, a gravidade vence e ele cai de volta.
+		# Arremesso vertical: toca a animação de braço erguido e o lápis sai
+		# da posição da mão nessa pose, não do centro genérico do corpo.
+		_sprite.flip_h = direcao_olhando < 0.0
+		_tocar_animacao_acao("arremesso_vertical")
+		lapis.global_position = _sprite.global_position + Vector2(
+			offset_mao_vertical.x * direcao_olhando, offset_mao_vertical.y
+		)
+
+		# Sobe reto pra cima com velocidade própria e, depois de um tempo,
+		# a gravidade vence e ele cai de volta.
 		lapis.direcao = 0.0
 		lapis.usar_gravidade = true
 		lapis.velocidade_y = -velocidade_lancamento_vertical
 		lapis.rotation = -PI / 2.0
 	else:
+		# Sai do centro do corpo do jogador (centro do sprite), não da origem
+		# do CharacterBody2D, que fica deslocada acima/à esquerda do corpo.
+		lapis.global_position = _sprite.global_position + Vector2(direcao_olhando * 15.0, 0.0)
 		lapis.direcao = direcao_olhando
 
 		# Se o jogador estiver no ar, o lápis segue uma trajetória de
