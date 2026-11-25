@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal vida_alterada(atual: int, maxima: int)
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -15,6 +16,7 @@ var ultimo_arremesso_tempo: float = -COOLDOWN_ARREMESSO
 
 func _ready() -> void:
 	add_to_group("jogador")
+	vida_alterada.emit(vida, VIDA_MAXIMA)
 
 
 func _physics_process(delta: float) -> void:
@@ -66,9 +68,14 @@ func arremessar() -> void:
 
 
 func receber_dano(dano: int) -> void:
-	vida -= dano
+	vida = clamp(vida - dano, 0, VIDA_MAXIMA)
+	vida_alterada.emit(vida, VIDA_MAXIMA)
 	print("Vida do jogador: ", vida)
 
 	if vida <= 0:
 		print("Jogador morreu")
 		queue_free()
+
+
+func obter_vida_maxima() -> int:
+	return VIDA_MAXIMA

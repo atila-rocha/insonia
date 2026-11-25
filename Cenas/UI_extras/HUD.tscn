@@ -1,0 +1,216 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="PackedScene" path="res://Cenas/UI_extras/barra_vida_inimigo.tscn" id="1_barra"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="2_hud"]
+[ext_resource type="Texture2D" path="res://Assets/icons/hud_brain.svg" id="3_cerebro"]
+[ext_resource type="Texture2D" path="res://Assets/icons/hud_bowl.svg" id="4_comida"]
+[ext_resource type="Texture2D" path="res://Assets/icons/hud_sprint.svg" id="5_sprint"]
+[ext_resource type="Texture2D" path="res://Assets/icons/hud_double_jump.svg" id="6_pulo"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/Tiny5/Tiny5-VariableFont_BLED,JITT,ROND,wdth,wght.ttf" id="7_fonte"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_cerebro"]
+bg_color = Color(0.045, 0.065, 0.12, 0.96)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.91, 0.48, 0.31, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_power_up"]
+bg_color = Color(0.07, 0.065, 0.09, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.78, 0.51, 0.33, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("2_hud")
+
+[node name="Interface" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Vida" type="Control" parent="Interface"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_top = 18.0
+offset_right = 370.0
+offset_bottom = 92.0
+grow_horizontal = 2
+
+[node name="MolduraCerebro" type="Panel" parent="Interface/Vida"]
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 66.0
+theme_override_styles/panel = SubResource("StyleBox_cerebro")
+
+[node name="Cerebro" type="TextureRect" parent="Interface/Vida/MolduraCerebro"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 57.0
+offset_bottom = 56.0
+texture = ExtResource("3_cerebro")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BarraVida" parent="Interface/Vida" instance=ExtResource("1_barra")]
+custom_minimum_size = Vector2(288, 46)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 11.0
+offset_right = 360.0
+offset_bottom = 57.0
+esconder_apos_inatividade = false
+mostrar_valores = false
+estilo_hud = true
+
+[node name="Titulo" type="Label" parent="Interface/Vida"]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 19.0
+offset_right = 550.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.94, 0.94, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.035, 0.035, 0.07, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_fonte")
+theme_override_font_sizes/font_size = 28
+text = "SANIDADE"
+vertical_alignment = 1
+
+[node name="Comida" type="Control" parent="Interface"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -273.0
+offset_top = 20.0
+offset_right = -30.0
+offset_bottom = 84.0
+grow_horizontal = 0
+
+[node name="Icone" type="TextureRect" parent="Interface/Comida"]
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 62.0
+texture = ExtResource("4_comida")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Quantidade" type="Label" parent="Interface/Comida"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 12.0
+offset_right = 245.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.94, 0.94, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.035, 0.035, 0.07, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_fonte")
+theme_override_font_sizes/font_size = 28
+vertical_alignment = 1
+
+[node name="PowerUps" type="Control" parent="Interface"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 120.0
+offset_right = 230.0
+offset_bottom = 245.0
+
+[node name="Titulo" type="Label" parent="Interface/PowerUps"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0.94, 0.94, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.035, 0.035, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_fonte")
+theme_override_font_sizes/font_size = 22
+text = "POWER-UPS ATIVOS"
+
+[node name="Sprint" type="Control" parent="Interface/PowerUps"]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 64.0
+offset_bottom = 122.0
+
+[node name="Cartao" type="Panel" parent="Interface/PowerUps/Sprint"]
+layout_mode = 0
+offset_right = 58.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBox_power_up")
+
+[node name="Icone" type="TextureRect" parent="Interface/PowerUps/Sprint/Cartao"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 51.0
+offset_bottom = 51.0
+texture = ExtResource("5_sprint")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texto" type="Label" parent="Interface/PowerUps/Sprint"]
+layout_mode = 0
+offset_top = 61.0
+offset_right = 62.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.94, 0.94, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.035, 0.035, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_fonte")
+theme_override_font_sizes/font_size = 17
+text = "SPRINT"
+horizontal_alignment = 1
+
+[node name="PuloDuplo" type="Control" parent="Interface/PowerUps"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 29.0
+offset_right = 137.0
+offset_bottom = 122.0
+
+[node name="Cartao" type="Panel" parent="Interface/PowerUps/PuloDuplo"]
+layout_mode = 0
+offset_right = 58.0
+offset_bottom = 58.0
+theme_override_styles/panel = SubResource("StyleBox_power_up")
+
+[node name="Icone" type="TextureRect" parent="Interface/PowerUps/PuloDuplo/Cartao"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 51.0
+offset_bottom = 51.0
+texture = ExtResource("6_pulo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texto" type="Label" parent="Interface/PowerUps/PuloDuplo"]
+layout_mode = 0
+offset_top = 61.0
+offset_right = 64.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0.94, 0.94, 0.88, 1)
+theme_override_colors/font_outline_color = Color(0.035, 0.035, 0.07, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("7_fonte")
+theme_override_font_sizes/font_size = 17
+text = "PULO\nDUPLO"
+horizontal_alignment = 1
